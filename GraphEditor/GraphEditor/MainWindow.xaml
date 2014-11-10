@@ -5,22 +5,10 @@
     <Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*" MaxHeight="60"/>
-			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="10*"/>
 		</Grid.RowDefinitions>
 		
-		<Grid Grid.Row="1">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*" MaxWidth="100"/>
-				<ColumnDefinition Width="Auto"/>
-			</Grid.ColumnDefinitions>
-			
-			<Grid Grid.Column="1">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="*" MaxHeight="30"/>
-				</Grid.RowDefinitions>
-			</Grid>
-		</Grid>
+		
 		
 		<DockPanel Grid.Row="0">
 			<UniformGrid DockPanel.Dock="Left" Columns="4" MaxWidth="200">
@@ -42,6 +30,36 @@
 					   FontSize="36" FontFamily="Edwardian Script ITC" Foreground="Red" FontWeight="Bold"/>
 			</Viewbox>
 		</DockPanel>
-		
+
+		<Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" MaxWidth="100"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+
+			<UniformGrid Rows="10">
+				<Button x:Name="AddVertexButton" Content="AddVertex" />
+				<Button x:Name="AddEdgeButton" Content="AddEdge" />
+				<Button x:Name="RemoveVertexOrNodeButton" Content="Remove" />
+				<UniformGrid Columns="2">
+					<Button x:Name="UndoButton" Content="Undo" />
+					<Button x:Name="RedoButton" Content="Redo" />
+				</UniformGrid>
+				<ToggleButton x:Name="OrientedGraphToggleButton" Content="Oriented" />
+				<Button x:Name="SwapEdgeDirectionButton" Content="Swap" />
+				<Button x:Name="KruscalAlgorithmButton" Content="Kruscal" />
+				<Button x:Name="DijkstraAlgorithmButton" Content="Dijkstra" />
+				<Button x:Name="BfsAlgorithmButton" Content="Bfs" />
+				<Button x:Name="FleuryAlgorithmButton" Content="Fleury" />
+			</UniformGrid>
+
+			<Grid Grid.Column="1">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="*" MaxHeight="30"/>
+				</Grid.RowDefinitions>
+			</Grid>
+		</Grid>
+
 	</Grid>
 </Window>
