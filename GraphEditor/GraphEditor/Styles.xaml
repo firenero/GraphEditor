@@ -1,28 +1,78 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	
-	<SolidColorBrush x:Key="PrimaryMousePressedColor" Color="CornflowerBlue" />
-	<SolidColorBrush x:Key="PrimaryMouseOverColor" Color="LightGray" />
-	
+	<SolidColorBrush x:Key="PrimaryMousePressedColor" x:Shared="False" Color="CornflowerBlue" />
+	<SolidColorBrush x:Key="PrimaryMouseOverColor" x:Shared="False" Color="LightGray" />
+	<SolidColorBrush x:Key="PrimaryPanelColor" x:Shared="False" Color="DimGray" />
+	<SolidColorBrush x:Key="PrimaryButtonColor" x:Shared="False" Color="DimGray" />
+	<SolidColorBrush x:Key="Primary" x:Shared="False" Color="DimGray" />
+
 	<ControlTemplate TargetType="Button" x:Key="StandardButtonControlTemplate">
-		<Grid>
+		<Grid SnapsToDevicePixels="True">
 			<Rectangle x:Name="BackgroundRectangle" StrokeThickness="0" Fill="{TemplateBinding Background}" 
-					   Opacity="1" Visibility="Visible" />
-			<ContentPresenter Content="{TemplateBinding Button.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />	
-		</Grid>
-		<ControlTemplate.Triggers>
-			<Trigger Property="IsMouseOver" Value="True">
-				<Setter Property="Background" Value="{StaticResource PrimaryMouseOverColor}" />
-			</Trigger>
+					   Opacity="1" Visibility="Visible" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
 			
-			<Trigger Property="IsPressed" Value="True">
-				<Setter Property="Background" Value="{StaticResource PrimaryMousePressedColor}" />
-			</Trigger>
-		</ControlTemplate.Triggers>
+			<ContentPresenter Content="{TemplateBinding Button.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />	
+			
+			<VisualStateManager.VisualStateGroups>
+				<VisualStateGroup Name="CommonStates">
+					<VisualState Name="Normal" />
+					
+					<VisualState Name="MouseOver" >
+						<Storyboard>
+							<ColorAnimation To="{Binding Source={StaticResource PrimaryMouseOverColor}, Path=Color}" Storyboard.TargetName="BackgroundRectangle"
+											Storyboard.TargetProperty="Fill.Color" Duration="0:00:00" />
+						</Storyboard>
+					</VisualState>
+					
+					<VisualState Name="Pressed">
+						<Storyboard>
+							<ColorAnimation To="{Binding Source={StaticResource PrimaryMousePressedColor}, Path=Color}" Storyboard.TargetName="BackgroundRectangle"
+											Storyboard.TargetProperty="Fill.Color" Duration="0:00:00" />
+						</Storyboard>
+					</VisualState>
+				</VisualStateGroup>
+			</VisualStateManager.VisualStateGroups>
+		</Grid>
 	</ControlTemplate>
-	
+
 	<Style TargetType="Button">
 		<Setter Property="Template" Value="{StaticResource StandardButtonControlTemplate}" />
+		<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+	</Style>
+
+	<ControlTemplate TargetType="ToggleButton" x:Key="StandardToggleButtonControlTemplate">
+		<Grid SnapsToDevicePixels="True">
+			<Rectangle x:Name="BackgroundRectangle" StrokeThickness="0" Fill="{TemplateBinding Background}" 
+					   Opacity="1" Visibility="Visible" />
+			
+			<ContentPresenter Content="{TemplateBinding ToggleButton.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+			<VisualStateManager.VisualStateGroups>
+				<VisualStateGroup Name="CommonStates">
+					<VisualState Name="Normal" />
+
+					<VisualState Name="MouseOver" >
+						<Storyboard>
+							<ColorAnimation To="{Binding Source={StaticResource PrimaryMouseOverColor}, Path=Color}" Storyboard.TargetName="BackgroundRectangle"
+											Storyboard.TargetProperty="Fill.Color" Duration="0:00:00" />
+						</Storyboard>
+					</VisualState>
+
+					<VisualState Name="Checked">
+						<Storyboard>
+							<ColorAnimation To="{Binding Source={StaticResource PrimaryMousePressedColor}, Path=Color}" Storyboard.TargetName="BackgroundRectangle"
+											Storyboard.TargetProperty="Fill.Color" Duration="0:00:00" />
+						</Storyboard>
+					</VisualState>
+				</VisualStateGroup>
+			</VisualStateManager.VisualStateGroups>
+		</Grid>
+	</ControlTemplate>
+
+	<Style TargetType="ToggleButton">
+		<Setter Property="Template" Value="{StaticResource StandardToggleButtonControlTemplate}" />
+		<Setter Property="FocusVisualStyle" Value="{x:Null}" />
 	</Style>
 	
 </ResourceDictionary>
