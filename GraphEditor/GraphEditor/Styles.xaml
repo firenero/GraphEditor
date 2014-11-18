@@ -5,7 +5,7 @@
 	<SolidColorBrush x:Key="PrimaryMouseOverColor" x:Shared="False" Color="LightGray" />
 	<SolidColorBrush x:Key="PrimaryPanelColor" x:Shared="False" Color="DimGray" />
 	<SolidColorBrush x:Key="PrimaryButtonColor" x:Shared="False" Color="DimGray" />
-	<SolidColorBrush x:Key="Primary" x:Shared="False" Color="DimGray" />
+	<SolidColorBrush x:Key="PrimaryContentColor" x:Shared="False" Color="White" />
 
 	<ControlTemplate TargetType="Button" x:Key="StandardButtonControlTemplate">
 		<Grid SnapsToDevicePixels="True">
@@ -31,13 +31,17 @@
 											Storyboard.TargetProperty="Fill.Color" Duration="0:00:00" />
 						</Storyboard>
 					</VisualState>
+					
+					<VisualState Name="Key"></VisualState>
 				</VisualStateGroup>
+				
 			</VisualStateManager.VisualStateGroups>
 		</Grid>
 	</ControlTemplate>
 
 	<Style TargetType="Button">
 		<Setter Property="Template" Value="{StaticResource StandardButtonControlTemplate}" />
+		<Setter Property="Foreground" Value="{StaticResource PrimaryContentColor}" />
 		<Setter Property="FocusVisualStyle" Value="{x:Null}" />
 	</Style>
 
@@ -72,6 +76,7 @@
 
 	<Style TargetType="ToggleButton">
 		<Setter Property="Template" Value="{StaticResource StandardToggleButtonControlTemplate}" />
+		<Setter Property="Foreground" Value="{StaticResource PrimaryContentColor}" />
 		<Setter Property="FocusVisualStyle" Value="{x:Null}" />
 	</Style>
 	
