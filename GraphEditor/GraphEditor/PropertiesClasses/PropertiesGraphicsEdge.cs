@@ -1,12 +1,9 @@
 using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
+using GraphEditor.Graphics;
 
-
-
-namespace GraphLib
+namespace GraphEditor.PropertiesClasses
 {
     /// <summary>
     /// Line object properties

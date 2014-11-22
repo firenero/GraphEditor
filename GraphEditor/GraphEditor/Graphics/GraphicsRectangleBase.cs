@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Globalization;
 
-namespace GraphLib
+namespace GraphEditor.Graphics
 {
     public abstract class GraphicsRectangleBase : GraphicsBase
     {

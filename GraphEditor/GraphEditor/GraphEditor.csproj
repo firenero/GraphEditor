@@ -71,6 +71,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CommandAdd.cs" />
+    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\CommandChangeState.cs" />
+    <Compile Include="Commands\CommandDelete.cs" />
+    <Compile Include="Commands\CommandDeleteAll.cs" />
+    <Compile Include="HelperFunctions.cs" />
+    <Compile Include="IO\InputOutputService.cs" />
+    <Compile Include="IO\SerializationHelper.cs" />
+    <Compile Include="Tools\Tool.cs" />
+    <Compile Include="Tools\ToolEdge.cs" />
+    <Compile Include="Tools\ToolEraser.cs" />
+    <Compile Include="Tools\ToolObject.cs" />
+    <Compile Include="Tools\ToolPointer.cs" />
+    <Compile Include="Tools\ToolRectangleBase.cs" />
+    <Compile Include="Tools\ToolText.cs" />
+    <Compile Include="Tools\ToolType.cs" />
+    <Compile Include="Tools\ToolVertex.cs" />
+    <Compile Include="UndoManager.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -79,6 +97,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GraphCanvas.cs" />
     <Compile Include="Graphics\GraphicsBase.cs" />
     <Compile Include="Graphics\GraphicsEdge.cs" />
     <Compile Include="Graphics\GraphicsRectangleBase.cs" />
@@ -131,7 +150,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Edge.cur" />
+    <Resource Include="Resources\Eraser.cur" />
+    <Resource Include="Resources\Normal.cur" />
+    <Resource Include="Resources\Text.cur" />
+    <Resource Include="Resources\Vertex.cur" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,11 +1,10 @@
 using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Globalization;
+using System.Windows;
+using System.Windows.Media;
+using GraphEditor.PropertiesClasses;
 
-namespace GraphLib
+namespace GraphEditor.Graphics
 {
     /// <summary>
     ///  Rectangle graphics object.
@@ -13,7 +12,6 @@ namespace GraphLib
     public class GraphicsVertex : GraphicsRectangleBase
     {
         Point center;
-        private DrawingBrush device_brush;
 
         #region Constructors
 

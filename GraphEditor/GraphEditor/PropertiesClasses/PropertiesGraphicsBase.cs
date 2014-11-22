@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
 using System.Windows.Media;
+using System.Xml.Serialization;
+using GraphEditor.Graphics;
 
-namespace GraphLib
+namespace GraphEditor.PropertiesClasses
 {
     public abstract class PropertiesGraphicsBase
     {
