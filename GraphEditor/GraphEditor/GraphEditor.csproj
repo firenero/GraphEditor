@@ -79,6 +79,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Graphics\GraphicsBase.cs" />
+    <Compile Include="Graphics\GraphicsEdge.cs" />
+    <Compile Include="Graphics\GraphicsRectangleBase.cs" />
+    <Compile Include="Graphics\GraphicsSelectionRectangle.cs" />
+    <Compile Include="Graphics\GraphicsVertex.cs" />
     <Compile Include="GraphStruct\GraphElementBase.cs" />
     <Compile Include="GraphStruct\GraphElementEdge.cs" />
     <Compile Include="GraphStruct\GraphElementVertex.cs" />
@@ -95,6 +100,9 @@
   <ItemGroup>
     <Compile Include="PropertiesClasses\PropertiesGraphBase.cs" />
     <Compile Include="PropertiesClasses\PropertiesGraphEdge.cs" />
+    <Compile Include="PropertiesClasses\PropertiesGraphicsBase.cs" />
+    <Compile Include="PropertiesClasses\PropertiesGraphicsEdge.cs" />
+    <Compile Include="PropertiesClasses\PropertiesGraphicsVertex.cs" />
     <Compile Include="PropertiesClasses\PropertiesGraphVertex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
