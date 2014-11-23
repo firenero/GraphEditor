@@ -119,7 +119,13 @@ namespace GraphEditor.PropertiesClasses
             set { selectedColor = value; }
         }
 
-        public String Label
+	    public Color TextColor
+	    {
+		    get { return textColor; }
+		    set { textColor = value; }
+	    }
+
+	    public String Label
         {
             get { return label; }
             set { label = value; }

@@ -95,6 +95,12 @@ namespace GraphEditor.PropertiesClasses
             set { selectedColor = value; }
         }
 
+		public Color TextColor
+		{
+			get { return textColor; }
+			set { textColor = value; }
+		}
+
         public bool IsSelected
         {
             get { return selected; }
