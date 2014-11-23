@@ -72,6 +72,12 @@ namespace GraphEditor.Tools
         /// </summary>
         public void CreateTextBox(GraphicsBase graphics, GraphCanvas drawingCanvas)
         {
+			// Set graphics if not set
+			if (!ReferenceEquals(cur_graphics, graphics))
+			{
+				cur_graphics = graphics;
+			}
+
             oldText = graphics.Label;
             textBox = new TextBox();
             
@@ -96,12 +102,6 @@ namespace GraphEditor.Tools
                 Canvas.SetLeft(textBox, ((GraphicsVertex)graphics).Center.X - graphics.FormatedLabel.Width / 2);
                 Canvas.SetTop(textBox, ((GraphicsVertex)graphics).Center.Y - graphics.FormatedLabel.Height / 2);
             }
-
-			// Set graphics if not set
-	        if (cur_graphics == null)
-	        {
-		        cur_graphics = graphics;
-	        }
             
             textBox.Focus();
             textBox.LostFocus += new RoutedEventHandler(textBox_LostFocus);
