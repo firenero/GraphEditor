@@ -25,6 +25,9 @@ namespace GraphEditor.PropertiesClasses
         [XmlIgnore]
         internal Color selectedColor;
 
+	    [XmlIgnore] 
+		internal Color textColor;
+
         public abstract GraphicsBase CreateGraphics();
     }
 }

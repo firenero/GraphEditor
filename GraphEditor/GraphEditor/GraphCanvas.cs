@@ -21,6 +21,7 @@ namespace GraphEditor
         public static readonly DependencyProperty LineWidthProperty;
         public static readonly DependencyProperty ObjectColorProperty;
         public static readonly DependencyProperty SelectedColorProperty;
+	    public static readonly DependencyProperty TextColorProperty;
         public static readonly DependencyProperty ActualScaleProperty;
         public static readonly DependencyProperty IsDirtyProperty;
         public static readonly DependencyProperty CanUndoProperty;
@@ -136,11 +137,20 @@ namespace GraphEditor
             // SelectedColor
             metaData = new PropertyMetadata(
                 Colors.Red,
-                new PropertyChangedCallback(ObjectColorChanged));
+				new PropertyChangedCallback(SelectedColorChanged));
 
             SelectedColorProperty = DependencyProperty.Register(
                 "SelectedColor", typeof(Color), typeof(GraphCanvas),
                 metaData);
+
+			// TextColor
+			metaData = new PropertyMetadata(
+				Colors.Black,
+				new PropertyChangedCallback(TextColorChanged));
+
+			TextColorProperty = DependencyProperty.Register(
+				"TextColor", typeof(Color), typeof(GraphCanvas),
+				metaData);
 
 
             metaData = new PropertyMetadata(false);
@@ -504,6 +514,26 @@ namespace GraphEditor
 
             HelperFunctions.ApplyColor(d, d.SelectedColor, true);
         }
+
+		public Color TextColor
+		{
+			get
+			{
+				return (Color)GetValue(TextColorProperty);
+			}
+			set
+			{
+				SetValue(TextColorProperty, value);
+
+			}
+		}
+
+		static void TextColorChanged(DependencyObject property, DependencyPropertyChangedEventArgs args)
+		{
+			GraphCanvas d = property as GraphCanvas;
+
+			HelperFunctions.ApplyColor(d, d.SelectedColor, true);
+		}
 
         /// <summary>
         /// Open in-place edit box if GraphicsText is clicked

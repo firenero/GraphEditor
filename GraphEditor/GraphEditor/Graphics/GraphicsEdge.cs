@@ -24,7 +24,7 @@ namespace GraphEditor.Graphics
 
         #region Constructors
 
-        public GraphicsEdge(Point start, Point end, String weight, double lineWidth, Color objectColor, Color selectedColor, double actualScale, bool oriented)
+        public GraphicsEdge(Point start, Point end, String weight, double lineWidth, Color objectColor, Color selectedColor, Color textColor, double actualScale, bool oriented)
         {
             this.lineStart = start;
             this.lineEnd = end;
@@ -33,13 +33,14 @@ namespace GraphEditor.Graphics
             this.graphicsObjectColor = objectColor;
             this.graphicsSelectedColor = selectedColor;
             this.graphicsActualScale = actualScale;
+	        this.graphicsTextColor = textColor;
             this.oriented = oriented;
-            this.label = new FormattedText(weight, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, Brushes.Black);
+            this.label = new FormattedText(weight, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, new SolidColorBrush(textColor));
         }
 
         public GraphicsEdge()
             :
-            this(new Point(0.0, 0.0), new Point(100.0, 100.0), "", 1.0, Colors.Black, Colors.Red, 1.0, false)
+            this(new Point(0.0, 0.0), new Point(100.0, 100.0), "", 1.0, Colors.Black, Colors.Red, Colors.Black, 1.0, false)
         {
         }
 
@@ -85,7 +86,7 @@ namespace GraphEditor.Graphics
             drawingContext.DrawLine(connect_pen, lineStart, lineEnd);
 
             if (IsSelected) this.label.SetForegroundBrush(new SolidColorBrush(SelectedColor));
-            else this.label.SetForegroundBrush(new SolidColorBrush(ObjectColor));
+            else this.label.SetForegroundBrush(new SolidColorBrush(TextColor));
             Point Z = new Point(lineEnd.X - lineStart.X, lineEnd.Y - lineStart.Y);
             double len_Z = Math.Sqrt(Z.X * Z.X + Z.Y * Z.Y);
             Point EZ = new Point(Z.X / len_Z, Z.Y / len_Z);
@@ -216,18 +217,16 @@ namespace GraphEditor.Graphics
         /// </summary>
         public override Cursor GetHandleCursor(int handleNumber)
         {
-	        throw new NotImplementedException();
-			//TODO Create HelperFunctions and cursors. Then uncomment this method.
-			//if (IsTrackerOn)
-			//	switch (handleNumber)
-			//	{
-			//		case 1:
-			//		case 2:
-			//			return Cursors.SizeAll;
-			//		default:
-			//			return HelperFunctions.DefaultCursor;
-			//	}
-			//return HelperFunctions.DefaultCursor;
+			if (IsTrackerOn)
+				switch (handleNumber)
+				{
+					case 1:
+					case 2:
+						return Cursors.SizeAll;
+					default:
+						return HelperFunctions.DefaultCursor;
+				}
+			return HelperFunctions.DefaultCursor;
         }
 
         /// <summary>

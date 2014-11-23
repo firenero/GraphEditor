@@ -161,31 +161,29 @@ namespace GraphEditor.Graphics
         /// </summary>
         public override Cursor GetHandleCursor(int handleNumber)
         {
-			throw new NotImplementedException();
-			//TODO Create HelperFunctions and cursors. Then uncomment this method.
-			//if(IsTrackerOn)
-			//	switch (handleNumber)
-			//	{
-			//		case 1:
-			//			return Cursors.SizeNWSE;
-			//		case 2:
-			//			return Cursors.SizeNS;
-			//		case 3:
-			//			return Cursors.SizeNESW;
-			//		case 4:
-			//			return Cursors.SizeWE;
-			//		case 5:
-			//			return Cursors.SizeNWSE;
-			//		case 6:
-			//			return Cursors.SizeNS;
-			//		case 7:
-			//			return Cursors.SizeNESW;
-			//		case 8:
-			//			return Cursors.SizeWE;
-			//		default:
-			//			return HelperFunctions.DefaultCursor;
-			//	}
-			//return HelperFunctions.DefaultCursor;
+			if (IsTrackerOn)
+				switch (handleNumber)
+				{
+					case 1:
+						return Cursors.SizeNWSE;
+					case 2:
+						return Cursors.SizeNS;
+					case 3:
+						return Cursors.SizeNESW;
+					case 4:
+						return Cursors.SizeWE;
+					case 5:
+						return Cursors.SizeNWSE;
+					case 6:
+						return Cursors.SizeNS;
+					case 7:
+						return Cursors.SizeNESW;
+					case 8:
+						return Cursors.SizeWE;
+					default:
+						return HelperFunctions.DefaultCursor;
+				}
+			return HelperFunctions.DefaultCursor;
         }
         /// <summary>
         /// Move handle to new point (resizing)

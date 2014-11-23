@@ -25,7 +25,7 @@ namespace GraphEditor.Tools
             if (e.ChangedButton == MouseButton.Left)
             {
 				// VertexName was hardcoded
-                AddNewObject(drawingCanvas, new GraphicsVertex(p, 20.0, "Vertex", drawingCanvas.LineWidth, drawingCanvas.ObjectColor, drawingCanvas.SelectedColor, drawingCanvas.ActualScale));
+                AddNewObject(drawingCanvas, new GraphicsVertex(p, 20.0, "Vertex", drawingCanvas.LineWidth, drawingCanvas.ObjectColor, drawingCanvas.SelectedColor, drawingCanvas.TextColor, drawingCanvas.ActualScale));
 				drawingCanvas.GraphStructure.AddVertex("Vertex", ((GraphicsVertex)drawingCanvas[drawingCanvas.Count - 1]).Id);
             }
         }

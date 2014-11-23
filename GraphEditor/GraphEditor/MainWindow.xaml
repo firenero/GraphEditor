@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+		xmlns:graph="clr-namespace:GraphEditor"
         Title="MainWindow" WindowStyle="None" WindowState="Maximized" Background="DarkGray">
     <Grid>
 		<Grid.RowDefinitions>
@@ -56,14 +57,15 @@
 					<RowDefinition Height="2*" />
 					<RowDefinition Height="2*" />
 				</Grid.RowDefinitions>
-				<Button Grid.Row="0" x:Name="AddVertexButton" Content="AddVertex" Background="{StaticResource PrimaryButtonColor}" />
-				<Button Grid.Row="1" x:Name="AddEdgeButton" Content="AddEdge" Background="{StaticResource PrimaryButtonColor}" />
-				<Button Grid.Row="2" x:Name="RemoveVertexOrNodeButton" Content="Remove" Background="{StaticResource PrimaryButtonColor}" />
+				<Button Grid.Row="0" x:Name="AddVertexButton" Content="AddVertex" Background="{StaticResource PrimaryButtonColor}" Click="AddVertexButton_OnClick" />
+				<Button Grid.Row="1" x:Name="AddEdgeButton" Content="AddEdge" Background="{StaticResource PrimaryButtonColor}" Click="AddEdgeButton_OnClick"/>
+				<Button Grid.Row="2" x:Name="RemoveVertexOrNodeButton" Content="Remove" Background="{StaticResource PrimaryButtonColor}" Click="RemoveVertexOrNodeButton_OnClick" />
 				<UniformGrid Grid.Row="3" Columns="2">
-					<Button x:Name="UndoButton" Content="Undo" Background="{StaticResource PrimaryButtonColor}" />
-					<Button x:Name="RedoButton" Content="Redo" Background="{StaticResource PrimaryButtonColor}" />
+					<Button x:Name="UndoButton" Content="Undo" Background="{StaticResource PrimaryButtonColor}" Click="UndoButton_OnClick" />
+					<Button x:Name="RedoButton" Content="Redo" Background="{StaticResource PrimaryButtonColor}" Click="RedoButton_OnClick" />
 				</UniformGrid>
-				<ToggleButton Grid.Row="4" x:Name="OrientedGraphToggleButton" Content="Oriented" Background="{StaticResource PrimaryButtonColor}" />
+				<ToggleButton Grid.Row="4" x:Name="OrientedGraphToggleButton" Content="Oriented" Background="{StaticResource PrimaryButtonColor}"
+							  Checked="OrientedGraphToggleButton_OnChecked" Unchecked="OrientedGraphToggleButton_OnUnchecked"/>
 				<Button Grid.Row="5" x:Name="SwapEdgeDirectionButton" Content="Swap" Background="{StaticResource PrimaryButtonColor}" />
 				<Button Grid.Row="6" x:Name="KruscalAlgorithmButton" Content="Kruscal" Background="{StaticResource PrimaryButtonColor}" />
 				<Button Grid.Row="7" x:Name="DijkstraAlgorithmButton" Content="Dijkstra" Background="{StaticResource PrimaryButtonColor}" />
@@ -76,6 +78,12 @@
 					<RowDefinition Height="10*"/>
 					<RowDefinition Height="*" MaxHeight="30"/>
 				</Grid.RowDefinitions>
+
+				<!--<toolkit:Zoombox MinScale="0.5" MaxScale="2">-->
+					<graph:GraphCanvas x:Name="DrawingGraphCanvas" ObjectColor="Black" SelectedColor="Red" TextColor="Black"
+								   LineWidth="3" Tracker="False" Background="White" Height="5000" Width="5000"/>
+				<!--</toolkit:Zoombox>-->
+
 			</Grid>
 		</Grid>
 

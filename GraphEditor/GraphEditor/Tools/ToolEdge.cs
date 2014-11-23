@@ -53,7 +53,7 @@ namespace GraphEditor.Tools
                             HelperFunctions.VertexMargin(ref A, ref B, ((GraphicsVertex)begin_vertex).GetRadius(A, B), ((GraphicsVertex)begin_vertex).GetRadius(A, B));
 
                             drawingCanvas.GraphicsList.Remove(begin_vertex);
-                            cur_edge = new GraphicsEdge(A, new Point(point.X + 1, point.Y + 1), "", drawingCanvas.LineWidth, drawingCanvas.ObjectColor, drawingCanvas.SelectedColor, drawingCanvas.ActualScale, drawingCanvas.IsOrientedGraph);
+                            cur_edge = new GraphicsEdge(A, new Point(point.X + 1, point.Y + 1), "", drawingCanvas.LineWidth, drawingCanvas.ObjectColor, drawingCanvas.SelectedColor, drawingCanvas.TextColor, drawingCanvas.ActualScale, drawingCanvas.IsOrientedGraph);
                             AddNewObject(drawingCanvas, cur_edge);
                             connected = false;
 

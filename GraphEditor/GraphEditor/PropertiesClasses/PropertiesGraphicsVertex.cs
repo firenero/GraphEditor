@@ -36,6 +36,7 @@ namespace GraphEditor.PropertiesClasses
             lineWidth = ellipse.LineWidth;
             objectColor = ellipse.ObjectColor;
             selectedColor = ellipse.SelectedColor;
+	        textColor = ellipse.TextColor;
             actualScale = ellipse.ActualScale;
             id = ellipse.Id;
             selected = ellipse.IsSelected;
@@ -43,7 +44,7 @@ namespace GraphEditor.PropertiesClasses
 
         public override GraphicsBase CreateGraphics()
         {
-            GraphicsBase b =  new GraphicsVertex(left, top, right, bottom, label, lineWidth, objectColor, selectedColor, actualScale);
+            GraphicsBase b =  new GraphicsVertex(left, top, right, bottom, label, lineWidth, objectColor, selectedColor, textColor, actualScale);
             if ( this.id != 0 )
             {
                 b.Id = this.id;

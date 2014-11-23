@@ -26,7 +26,9 @@ namespace GraphEditor.Commands
                 if (g.IsSelected)
                 {
                     listToFill.Add(g.CreateSerializedObject());
-                    listToFillEl.Add(graph.GetElement(g.Id).CreateSerializedObject());
+	                var a = graph.GetElement(g.Id);
+	                var b = a.CreateSerializedObject();
+                    listToFillEl.Add(b);
                 }
             }
         }

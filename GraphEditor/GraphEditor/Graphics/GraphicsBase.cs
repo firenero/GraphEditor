@@ -17,6 +17,7 @@ namespace GraphEditor.Graphics
         protected double graphicsLineWidth;
         protected Color graphicsObjectColor;
         protected Color graphicsSelectedColor;
+	    protected Color graphicsTextColor;
         protected FormattedText label = new FormattedText("", CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, Brushes.Black);
 
         // external rectangle
@@ -103,7 +104,18 @@ namespace GraphEditor.Graphics
                 RefreshDrawing();
             }
         }
-        public Color CurrentColor
+
+	    public Color TextColor 
+		{
+		    get { return graphicsTextColor; }
+		    set
+		    {
+			    graphicsTextColor = value;
+			    RefreshDrawing();
+		    }
+		}
+
+	    public Color CurrentColor
         {
             get
             {

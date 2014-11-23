@@ -15,29 +15,41 @@ namespace GraphEditor.Graphics
 
         #region Constructors
 
-        public GraphicsVertex(Point center, double radius, String label, double lineWidth, Color objectColor, Color selectedColor, double actualScale)
+        public GraphicsVertex(Point center, double radius, String label, double lineWidth, Color objectColor, Color selectedColor, Color textColor, double actualScale)
         {
+			this.label = new FormattedText(label, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, new SolidColorBrush(textColor));
+			//if (this.label.Width / 2 + 5 > radius)
+			//{
+			//	radius = this.label.Width / 2 + 5;
+			//}
+
             this.rectangleTop = center.Y + radius;
             this.rectangleBottom = center.Y - radius;
             this.graphicsLineWidth = lineWidth;
             this.graphicsObjectColor = objectColor;
             this.SelectedColor = selectedColor;
+	        this.TextColor = textColor;
             this.graphicsActualScale = actualScale;
 
             Rect r = Rectangle;
             this.center = center;
 
-            this.label = new FormattedText(label, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, new SolidColorBrush(ObjectColor));
-            if (this.label.Width / 2 + 5 > radius)
-            {
-                radius = this.label.Width / 2 + 5; 
-            }
+            
+
             this.rectangleLeft = center.X + radius;
             this.rectangleRight = center.X - radius;
         }
 
-        public GraphicsVertex(double left, double top, double right, double bottom, String label, double lineWidth, Color objectColor, Color selectedColor, double actualScale)
+        public GraphicsVertex(double left, double top, double right, double bottom, String label, double lineWidth, Color objectColor, Color selectedColor, Color textColor, double actualScale)
         {
+			this.label = new FormattedText(label, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, new SolidColorBrush(textColor));
+			//if (this.label.Width / 2 + 5 > (right - left) / 2)
+			//{
+			//	double radius = this.label.Width / 2 + 5;
+			//	this.rectangleLeft = center.X + radius;
+			//	this.rectangleRight = center.X - radius;
+			//}
+
             this.rectangleLeft = left;
             this.rectangleTop = top;
             this.rectangleRight = right;
@@ -45,24 +57,20 @@ namespace GraphEditor.Graphics
             this.graphicsLineWidth = lineWidth;
             this.graphicsObjectColor = objectColor;
             this.SelectedColor = selectedColor;
+			this.TextColor = textColor;
             this.graphicsActualScale = actualScale;
 
             Rect r = Rectangle;
             center = new Point(
                 (r.Left + r.Right) / 2.0,
                 (r.Top + r.Bottom) / 2.0);
-            this.label = new FormattedText(label, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 16, Brushes.Black);
-            if (this.label.Width / 2 + 5 > (right - left) / 2)
-            {
-                double radius = this.label.Width / 2 + 5;
-                this.rectangleLeft = center.X + radius;
-                this.rectangleRight = center.X - radius;
-            }
+          
+
         }
 
         public GraphicsVertex()
             :
-            this(0.0, 0.0, 100.0, 100.0, "", 1.0, Colors.Black, Colors.Red, 1.0)
+            this(0.0, 0.0, 100.0, 100.0, "", 1.0, Colors.Black, Colors.Red, Colors.Black, 1.0)
         {
         }
 
@@ -75,16 +83,18 @@ namespace GraphEditor.Graphics
             }
         }
         
-        public void SetSize(double def_radius, int count, double val)
+        public void SetSize(double defRadius, int count, double val)
         {
-            this.rectangleTop = center.Y - def_radius;
-            this.rectangleBottom = center.Y + def_radius;
-            /*if (this.label.Width / 2 + 5 > def_radius)
-            {
-                def_radius = this.label.Width / 2 + 5;
-            }*/
-            this.rectangleLeft = center.X - def_radius;
-            this.rectangleRight = center.X + def_radius;
+			//if (this.label.Width / 2 + 5 > def_radius)
+			//{
+			//	def_radius = this.label.Width / 2 + 5;
+			//}
+
+            this.rectangleTop = center.Y - defRadius;
+            this.rectangleBottom = center.Y + defRadius;
+
+            this.rectangleLeft = center.X - defRadius;
+            this.rectangleRight = center.X + defRadius;
             for (int i = 0; i < count; i++)
                 IncSize(val);
             if (count == 0) RefreshDrawing();
@@ -154,13 +164,13 @@ namespace GraphEditor.Graphics
             double radiusX = (r.Right - r.Left) / 2.0;
             double radiusY = (r.Bottom - r.Top) / 2.0;
             if (IsSelected) this.label.SetForegroundBrush(new SolidColorBrush(SelectedColor));
-            else this.label.SetForegroundBrush(new SolidColorBrush(ObjectColor));
+            else this.label.SetForegroundBrush(new SolidColorBrush(TextColor));
 
-			// TODO Here was device_brush instead of new SolidColorBrush(ObjectColor). Need to check how it's work.
-            drawingContext.DrawRectangle(new SolidColorBrush(ObjectColor), new Pen(), new Rect(new Point(center.X - radiusX * 0.8, center.Y - radiusY * 0.8), new Size(radiusX * 1.6, radiusY * 1.6)));
+            // drawingContext.DrawRectangle(new SolidColorBrush(ObjectColor), new Pen(), new Rect(new Point(center.X - radiusX * 0.8, center.Y - radiusY * 0.8), new Size(radiusX * 1.6, radiusY * 1.6)));
 
+			drawingContext.DrawEllipse(new SolidColorBrush(ObjectColor), new Pen(new SolidColorBrush(CurrentColor), ActualLineWidth), center, radiusX, radiusY);
             drawingContext.DrawText(this.label, new Point(center.X - this.label.Width / 2, center.Y + radiusY));
-           // drawingContext.DrawEllipse(null, new Pen(new SolidColorBrush(CurrentColor), ActualLineWidth), center, radiusX, radiusY);
+            
             base.Draw(drawingContext);
         }
 
@@ -168,7 +178,7 @@ namespace GraphEditor.Graphics
         {
             //double fi = Math.Atan2(B.Y - A.Y, B.X - A.X);
             Rect rect = Rectangle;
-            double a = (rect.Right - rect.Left) / 10.0;
+            double a = (rect.Right - rect.Left) / 2.0;
             //double b = (rect.Bottom - rect.Top) / 2.0;
             return a;// (a * b) / Math.Sqrt(b * b * Math.Cos(fi) * Math.Cos(fi) + a * a * Math.Sin(fi) * Math.Sin(fi));
         }

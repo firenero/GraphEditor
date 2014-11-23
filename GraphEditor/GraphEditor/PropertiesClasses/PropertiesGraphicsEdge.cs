@@ -32,6 +32,7 @@ namespace GraphEditor.PropertiesClasses
             objectColor = line.ObjectColor;
             selectedColor = line.SelectedColor;
             actualScale = line.ActualScale;
+	        textColor = line.TextColor;
             ID = line.Id;
             selected = line.IsSelected;
             label = line.Label;
@@ -39,7 +40,7 @@ namespace GraphEditor.PropertiesClasses
 
         public override GraphicsBase CreateGraphics()
         {
-            GraphicsBase b = new GraphicsEdge(start, end, label, lineWidth, objectColor, selectedColor, actualScale, false);
+            GraphicsBase b = new GraphicsEdge(start, end, label, lineWidth, objectColor, selectedColor, textColor, actualScale, false);
 
             if (this.ID != 0)
             {
