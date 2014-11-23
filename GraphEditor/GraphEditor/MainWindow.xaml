@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
 		xmlns:graph="clr-namespace:GraphEditor"
-        Title="MainWindow" WindowStyle="None" WindowState="Maximized" Background="DarkGray">
+        Title="Graph Editor" WindowStyle="None" WindowState="Maximized" Background="DarkGray">
     <Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*" MaxHeight="60"/>
@@ -19,10 +19,10 @@
 			</Grid.ColumnDefinitions>
 			
 			<UniformGrid Grid.Column="0" Columns="4">
-				<Button x:Name="NewFileButton" Content="New" Background="{StaticResource PrimaryButtonColor}" />
-				<Button x:Name="ExistingFileButton" Content="Existing" Background="{StaticResource PrimaryButtonColor}" />
-				<Button x:Name="SaveButton" Content="Save" Background="{StaticResource PrimaryButtonColor}" />
-				<Button x:Name="SaveAsButton" Content="SaveAs" Background="{StaticResource PrimaryButtonColor}" />
+				<Button x:Name="NewFileButton" Content="New" Background="{StaticResource PrimaryButtonColor}" Click="NewFileButton_OnClick" />
+				<Button x:Name="OpenFileButton" Content="Existing" Background="{StaticResource PrimaryButtonColor}" Click="OpenFileButton_OnClick" />
+				<Button x:Name="SaveButton" Content="Save" Background="{StaticResource PrimaryButtonColor}" Click="SaveButton_OnClick" />
+				<Button x:Name="SaveAsButton" Content="SaveAs" Background="{StaticResource PrimaryButtonColor}" Click="SaveAsButton_OnClick" />
 			</UniformGrid>
 
 			<Viewbox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

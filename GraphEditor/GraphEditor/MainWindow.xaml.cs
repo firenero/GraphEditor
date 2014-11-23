@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GraphEditor.IO;
 using GraphEditor.Tools;
+using Microsoft.Win32;
 
 namespace GraphEditor
 {
@@ -21,10 +23,16 @@ namespace GraphEditor
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		private string currentFileName = "";
+
 		public MainWindow()
 		{
 			InitializeComponent();
 		}
+
+		#region Buttons event handlers
+
+		#region Graph Edit Buttons
 
 		private void AddVertexButton_OnClick(object sender, RoutedEventArgs e)
 		{
@@ -59,6 +67,139 @@ namespace GraphEditor
 		private void OrientedGraphToggleButton_OnUnchecked(object sender, RoutedEventArgs e)
 		{
 			DrawingGraphCanvas.IsOrientedGraph = false;
+		} 
+
+		#endregion
+
+		#region IO Buttons
+
+		private void NewFileButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			if (IsSaveAndContinue())
+			{
+				New();
+			}
 		}
+
+		private void OpenFileButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			if (IsSaveAndContinue())
+			{
+				Open();
+			}
+		}
+
+		private void SaveButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			Save();
+		}
+
+		private void SaveAsButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			SaveAs();
+		}
+
+		#endregion
+
+		#endregion
+
+		#region Methods
+
+		private void New()
+		{
+			DrawingGraphCanvas.Clear();
+			currentFileName = "";
+		}
+
+		/// <summary>
+		/// Open new graph
+		/// </summary>
+		/// <returns>New file name if open success else old file name.</returns>>
+		private void Open()
+		{
+			var openFileDialog = new OpenFileDialog()
+			{
+				Filter = "XML files (*.xml)|*.xml|All Files|*.*",
+				DefaultExt = "xml",
+				InitialDirectory = Environment.CurrentDirectory
+			};
+			if (openFileDialog.ShowDialog() != false)
+			{
+				try
+				{
+					InputOutputService.Load(openFileDialog.FileName, DrawingGraphCanvas);
+					currentFileName = openFileDialog.FileName;
+				}
+				catch (Exception e)
+				{
+					MessageBox.Show("Can't open selected file.", Title, MessageBoxButton.OK);
+				}
+			}
+		}
+
+		private void Save()
+		{
+			if (currentFileName == "")
+			{
+				SaveAs();
+			}
+			else
+			{
+				Save(currentFileName);
+			}
+		}
+
+		private void SaveAs()
+		{
+			var saveFileDialog = new SaveFileDialog()
+			{
+				Filter = "XML files (*.xml)|*.xml|All Files|*.*",
+				DefaultExt = "xml",
+				InitialDirectory = Environment.CurrentDirectory
+			};
+
+			if (saveFileDialog.ShowDialog() != false)
+			{
+				Save(saveFileDialog.FileName);
+			}
+		}
+
+		private void Save(string filename)
+		{
+			try
+			{
+				InputOutputService.Save(filename, DrawingGraphCanvas);
+				currentFileName = filename;
+			}
+			catch (Exception e)
+			{
+				MessageBox.Show(e.Message, "Saving error.", MessageBoxButton.OK);
+			}
+		}
+
+		private MessageBoxResult ConfirmSave()
+		{
+			return MessageBox.Show("Do you want to save changes?", Title, MessageBoxButton.YesNoCancel);
+		}
+
+		private bool IsSaveAndContinue()
+		{
+			if (DrawingGraphCanvas.IsDirty)
+			{
+				switch (ConfirmSave())
+				{
+					case MessageBoxResult.Yes:
+						Save();
+						return true;
+					case MessageBoxResult.Cancel:
+						return false;
+					default:
+						return true;
+				}
+			}
+			return true;
+		}
+
+		#endregion
 	}
 }
