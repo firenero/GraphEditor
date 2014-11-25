@@ -79,10 +79,10 @@
 					<RowDefinition Height="*" MaxHeight="30"/>
 				</Grid.RowDefinitions>
 
-				<!--<toolkit:Zoombox MinScale="0.5" MaxScale="2">-->
+				<toolkit:Zoombox MinScale="0.5" MaxScale="2" KeepContentInBounds="True" RelativeZoomModifiers="None" DragModifiers="Ctrl" ZoomToSelectionModifiers="Alt">
 					<graph:GraphCanvas x:Name="DrawingGraphCanvas" ObjectColor="Black" SelectedColor="Red" TextColor="Black"
 								   LineWidth="3" Tracker="False" Background="White" Height="5000" Width="5000"/>
-				<!--</toolkit:Zoombox>-->
+				</toolkit:Zoombox>
 
 			</Grid>
 		</Grid>

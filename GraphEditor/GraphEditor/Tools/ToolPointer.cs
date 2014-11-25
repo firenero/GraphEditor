@@ -102,14 +102,21 @@ namespace GraphEditor.Tools
                         HelperFunctions.UnselectAll(drawingCanvas);
                     }
 
-                    // Select clicked object
-                    movedObject.IsSelected = true;
-                    HelperFunctions.SeclectConnections(drawingCanvas, movedObject, false);
+	                if (movedObject.IsSelected && Keyboard.Modifiers == ModifierKeys.Control)
+	                {
+		                movedObject.IsSelected = false;
+	                }
+					else
+					{
+						// Select clicked object
+						movedObject.IsSelected = true;
+						HelperFunctions.SeclectConnections(drawingCanvas, movedObject, false);
 
-                    // Set move cursor
-                    drawingCanvas.Cursor = Cursors.SizeAll;
+						// Set move cursor
+						drawingCanvas.Cursor = Cursors.SizeAll;
 
-                    commandChangeState = new CommandChangeState(drawingCanvas);
+						commandChangeState = new CommandChangeState(drawingCanvas); 
+					}
                 }
             }
 
@@ -117,12 +124,14 @@ namespace GraphEditor.Tools
             if (selectMode == SelectionMode.None)
             {
                 // Unselect all if Ctrl is not pressed
-                if (Keyboard.Modifiers != ModifierKeys.Control)
+                if (Keyboard.Modifiers != ModifierKeys.None)
                 {
-                    HelperFunctions.UnselectAll(drawingCanvas);
+                    return;
                 }
+	            
+				HelperFunctions.UnselectAll(drawingCanvas);
 
-                // Group selection. Create selection rectangle.
+	            // Group selection. Create selection rectangle.
                 GraphicsSelectionRectangle r = new GraphicsSelectionRectangle(
                     point.X, point.Y,
                     point.X + 1, point.Y + 1,

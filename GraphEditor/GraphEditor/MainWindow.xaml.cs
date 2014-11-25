@@ -130,7 +130,7 @@ namespace GraphEditor
 					InputOutputService.Load(openFileDialog.FileName, DrawingGraphCanvas);
 					currentFileName = openFileDialog.FileName;
 				}
-				catch (Exception e)
+				catch (Exception)
 				{
 					MessageBox.Show("Can't open selected file.", Title, MessageBoxButton.OK);
 				}
