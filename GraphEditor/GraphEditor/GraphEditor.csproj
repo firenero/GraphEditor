@@ -76,6 +76,7 @@
     <Compile Include="Commands\CommandChangeState.cs" />
     <Compile Include="Commands\CommandDelete.cs" />
     <Compile Include="Commands\CommandDeleteAll.cs" />
+    <Compile Include="Converters\ToolTypeToBoolConverter.cs" />
     <Compile Include="HelperFunctions.cs" />
     <Compile Include="IO\InputOutputService.cs" />
     <Compile Include="IO\SerializationHelper.cs" />

@@ -33,6 +33,7 @@ namespace GraphEditor.Tools
                 drawingCanvas.GraphicsList.Remove(cur_edge);
                 cur_edge = null;
                 pressed = false;
+				drawingCanvas.Tool = ToolType.Pointer;
                 return;
             }
 

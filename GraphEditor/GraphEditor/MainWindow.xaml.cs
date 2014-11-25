@@ -34,14 +34,26 @@ namespace GraphEditor
 
 		#region Graph Edit Buttons
 
-		private void AddVertexButton_OnClick(object sender, RoutedEventArgs e)
+		private void AddEdgeButton_OnChecked(object sender, RoutedEventArgs e)
+		{
+			DrawingGraphCanvas.Tool = ToolType.Edge;
+		}
+
+		private void AddEdgeButton_OnUnchecked(object sender, RoutedEventArgs e)
+		{
+			if (DrawingGraphCanvas.Tool == ToolType.Edge)
+				DrawingGraphCanvas.Tool = ToolType.Pointer;
+		}
+
+		private void AddVertexButton_OnChecked(object sender, RoutedEventArgs e)
 		{
 			DrawingGraphCanvas.Tool = ToolType.Ellipse;
 		}
 
-		private void AddEdgeButton_OnClick(object sender, RoutedEventArgs e)
+		private void AddVertexButton_OnUnchecked(object sender, RoutedEventArgs e)
 		{
-			DrawingGraphCanvas.Tool = ToolType.Edge;
+			if (DrawingGraphCanvas.Tool == ToolType.Ellipse)
+				DrawingGraphCanvas.Tool = ToolType.Pointer;
 		}
 
 		private void RemoveVertexOrNodeButton_OnClick(object sender, RoutedEventArgs e)

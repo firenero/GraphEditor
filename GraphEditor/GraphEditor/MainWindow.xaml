@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
 		xmlns:graph="clr-namespace:GraphEditor"
+		xmlns:converters="clr-namespace:GraphEditor.Converters"
         Title="Graph Editor" WindowStyle="None" WindowState="Maximized" Background="DarkGray">
     <Grid>
 		<Grid.RowDefinitions>
@@ -45,6 +46,9 @@
 			</Grid.ColumnDefinitions>
 
 			<Grid Grid.Column="0" Background="{StaticResource PrimaryPanelColor}">
+				<Grid.Resources>
+					<converters:ToolTypeToBoolConverter x:Key="ToolTypeToBoolConverter" />
+				</Grid.Resources>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="2*" />
 					<RowDefinition Height="2*" />
@@ -57,8 +61,12 @@
 					<RowDefinition Height="2*" />
 					<RowDefinition Height="2*" />
 				</Grid.RowDefinitions>
-				<Button Grid.Row="0" x:Name="AddVertexButton" Content="AddVertex" Background="{StaticResource PrimaryButtonColor}" Click="AddVertexButton_OnClick" />
-				<Button Grid.Row="1" x:Name="AddEdgeButton" Content="AddEdge" Background="{StaticResource PrimaryButtonColor}" Click="AddEdgeButton_OnClick"/>
+				<ToggleButton Grid.Row="0" x:Name="AddVertexButton" Content="AddVertex" Background="{StaticResource PrimaryButtonColor}"
+							  Checked="AddVertexButton_OnChecked" Unchecked="AddVertexButton_OnUnchecked"
+							  IsChecked="{Binding ElementName=DrawingGraphCanvas, Path=Tool, Mode=TwoWay, Converter={StaticResource ToolTypeToBoolConverter}, ConverterParameter=Vertex}"/>
+				<ToggleButton Grid.Row="1" x:Name="AddEdgeButton" Content="AddEdge" Background="{StaticResource PrimaryButtonColor}"
+							  Checked="AddEdgeButton_OnChecked" Unchecked="AddEdgeButton_OnUnchecked"
+							  IsChecked="{Binding ElementName=DrawingGraphCanvas, Path=Tool, Mode=TwoWay, Converter={StaticResource ToolTypeToBoolConverter}, ConverterParameter=Edge}"/>
 				<Button Grid.Row="2" x:Name="RemoveVertexOrNodeButton" Content="Remove" Background="{StaticResource PrimaryButtonColor}" Click="RemoveVertexOrNodeButton_OnClick" />
 				<UniformGrid Grid.Row="3" Columns="2">
 					<Button x:Name="UndoButton" Content="Undo" Background="{StaticResource PrimaryButtonColor}" Click="UndoButton_OnClick" />
