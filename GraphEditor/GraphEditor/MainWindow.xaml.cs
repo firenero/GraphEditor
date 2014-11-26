@@ -113,6 +113,20 @@ namespace GraphEditor
 
 		#endregion
 
+		#region Application Buttons
+
+		private void MinimizeButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			WindowState = WindowState.Minimized;
+		}
+
+		private void ExitButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			Close();
+		}
+
+		#endregion
+
 		#endregion
 
 		#region Methods
@@ -213,5 +227,6 @@ namespace GraphEditor
 		}
 
 		#endregion
+
 	}
 }
