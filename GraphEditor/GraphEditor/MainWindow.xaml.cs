@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GraphEditor.Algorithms;
 using GraphEditor.IO;
 using GraphEditor.Tools;
 using Microsoft.Win32;
@@ -228,5 +229,30 @@ namespace GraphEditor
 
 		#endregion
 
+		private void KruscalAlgorithmButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			var kruskalAlgorithm = new KruskalAlgorithm(DrawingGraphCanvas);
+			try
+			{
+				MessageBox.Show(String.Format("Total cost: {0}", kruskalAlgorithm.Execute()), "Algorithm result");
+			}
+			catch (ArgumentException argumentException)
+			{
+				MessageBox.Show(argumentException.Message, "Algorithm error");
+			}
+		}
+
+		private void BfsAlgorithmButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			var bfs = new BfsAlgorithm(DrawingGraphCanvas);
+			try
+			{
+				MessageBox.Show(String.Format("Minimum lenght: {0}", bfs.Execute()), "Algorithm result");
+			}
+			catch (ArgumentException argumentException)
+			{
+				MessageBox.Show(argumentException.Message, "Algorithm error");
+			}
+		}
 	}
 }

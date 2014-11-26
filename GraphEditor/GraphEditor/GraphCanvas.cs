@@ -1043,7 +1043,14 @@ namespace GraphEditor
             HelperFunctions.UnselectAll(this);
             UpdateState();
         }
-        public GraphStruct.GraphStruct GraphStructure
+
+	    public void SelectElements(IEnumerable<GraphElementBase> itemsToSelect)
+	    {
+			HelperFunctions.SelectElements(this, itemsToSelect);
+			UpdateState();
+	    }
+
+	    public GraphStruct.GraphStruct GraphStructure
         {
             get { return graphStructure; }
         }
@@ -1060,72 +1067,6 @@ namespace GraphEditor
                     ((GraphicsEdge)gr).IsOriented = IsOrientedGraph;
             }
         }
-
-		//public void Save(string fileName)
-		//{
-		//	try
-		//	{
-		//		SerializationHelper helper = new SerializationHelper(graphicsList, graphStructure);
-
-		//		XmlSerializer xml = new XmlSerializer(typeof(SerializationHelper));
-
-		//		using (Stream stream = new FileStream(fileName,FileMode.Create, FileAccess.Write, FileShare.None))
-		//		{
-		//			xml.Serialize(stream, helper);
-		//			ClearHistory();
-		//			UpdateState();
-		//		}
-		//	}
-		//	catch (Exception e)
-		//	{
-		//		throw new Exception(e.Message);
-		//	}
-		//}
-
-		///// <summary>
-		///// Load graphics from XML file.
-		///// Throws: DrawingCanvasException.
-		///// </summary>
-		//public void Load(string fileName)
-		//{
-		//	try
-		//	{
-		//		SerializationHelper helper;
-		//		XmlSerializer xml = new XmlSerializer(typeof(SerializationHelper));
-
-		//		using (Stream stream = new FileStream(fileName,FileMode.Open, FileAccess.Read, FileShare.Read))
-		//		{
-		//			helper = (SerializationHelper)xml.Deserialize(stream);
-		//		}
-
-		//		if (helper.Graphics == null)
-		//			throw new Exception("Empty Graphics List");
-		//		if (helper.Elements == null)
-		//			throw new Exception("Empty Elements List");
-
-		//		graphicsList.Clear();
-		//		graphStructure.Clear();
-
-		//		foreach (PropertiesGraphicsBase g in helper.Graphics)
-		//		{
-		//			graphicsList.Add(g.CreateGraphics());
-		//		}
-		//		foreach (PropertiesGraphBase g in helper.Elements)
-		//		{
-		//			graphStructure.AddElement(g);
-		//		}
-		//		// Update clip for all loaded objects.
-		//		RefreshClip();
-
-		//		ClearHistory();
-		//		UpdateState();
-		//		ReDraw();
-		//	}
-		//	catch (Exception e)
-		//	{
-		//		throw new Exception(e.Message);
-		//	}
-		//}
 
         public void ClearHistory()
         {

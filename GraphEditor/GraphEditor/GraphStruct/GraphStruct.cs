@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using GraphEditor.PropertiesClasses;
 
 namespace GraphEditor.GraphStruct
@@ -122,7 +123,32 @@ namespace GraphEditor.GraphStruct
                     if (id == edg.ID) return edg;
             return null;
         }
-        public GraphElementBase GetElement(int id)
+		/// <summary>
+		/// Get set o graph edges ordered by weight ascending.
+		/// </summary>
+		/// <returns></returns>
+	    public IEnumerable<GraphElementEdge> GetAllEdges()
+	    {
+		    var set = new HashSet<GraphElementEdge>();
+		    foreach (var edge in vertices.SelectMany(vertex => vertex.Connections))
+		    {
+			    set.Add(edge);
+		    }
+			return set.OrderBy(edge => edge.Weight);
+	    }
+
+	    public GraphElementEdge GetEdgeBetweenVertex(GraphElementVertex first, GraphElementVertex second)
+	    {
+		    foreach (var edge in first.Connections)
+		    {
+			    var res = edge.Begin == first ? edge.End : edge.Begin;
+			    if (res == second)
+				    return edge;
+		    }
+		    return null;
+	    }
+
+	    public GraphElementBase GetElement(int id)
         {
             GraphElementVertex v = GetVertex(id);
             if (v != null) return v;

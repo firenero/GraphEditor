@@ -23,7 +23,7 @@
 				<Button x:Name="NewFileButton" Content="{StaticResource NewIconPath}" Background="{StaticResource PrimaryButtonColor}" Click="NewFileButton_OnClick" />
 				<Button x:Name="OpenFileButton" Content="{StaticResource OpenIconPath}" Background="{StaticResource PrimaryButtonColor}" Click="OpenFileButton_OnClick" />
 				<Button x:Name="SaveButton" Content="{StaticResource SaveIconPath}" Background="{StaticResource PrimaryButtonColor}" Click="SaveButton_OnClick" />
-				<Button x:Name="SaveAsButton" Content="{StaticResource SaveAsIconPath}" Background="{StaticResource PrimaryButtonColor}" Click="SaveAsButton_OnClick" />
+				<Button x:Name="SaveAsButton" Content="SaveAs" Background="{StaticResource PrimaryButtonColor}" Click="SaveAsButton_OnClick" />
 			</UniformGrid>
 
 			<Viewbox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -75,10 +75,10 @@
 				<ToggleButton Grid.Row="4" x:Name="OrientedGraphToggleButton" Content="Oriented" Background="{StaticResource PrimaryButtonColor}"
 							  Checked="OrientedGraphToggleButton_OnChecked" Unchecked="OrientedGraphToggleButton_OnUnchecked"/>
 				<Button Grid.Row="5" x:Name="SwapEdgeDirectionButton" Content="Swap" Background="{StaticResource PrimaryButtonColor}" />
-				<Button Grid.Row="6" x:Name="KruscalAlgorithmButton" Content="{StaticResource KruskulIconPath}" Background="{StaticResource PrimaryButtonColor}" />
-				<Button Grid.Row="7" x:Name="DijkstraAlgorithmButton" Content="{StaticResource DijkstraIconPath}" Background="{StaticResource PrimaryButtonColor}" />
-				<Button Grid.Row="8" x:Name="BfsAlgorithmButton" Content="{StaticResource BfsIconPath}" Background="{StaticResource PrimaryButtonColor}" />
-				<Button Grid.Row="9" x:Name="FleuryAlgorithmButton" Content="{StaticResource FleuryIconPath}" Background="{StaticResource PrimaryButtonColor}"/>
+				<Button Grid.Row="6" x:Name="KruscalAlgorithmButton" Content="Kruscal" Background="{StaticResource PrimaryButtonColor}" Click="KruscalAlgorithmButton_OnClick" />
+				<Button Grid.Row="7" x:Name="DijkstraAlgorithmButton" Content="Dijkstra" Background="{StaticResource PrimaryButtonColor}" />
+				<Button Grid.Row="8" x:Name="BfsAlgorithmButton" Content="Bfs" Background="{StaticResource PrimaryButtonColor}" Click="BfsAlgorithmButton_OnClick"/>
+				<Button Grid.Row="9" x:Name="FleuryAlgorithmButton" Content="Fleury" Background="{StaticResource PrimaryButtonColor}"/>
 			</Grid>
 
 			<Grid Grid.Column="1">
