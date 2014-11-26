@@ -24,59 +24,48 @@ namespace GraphEditor.Algorithms
 			var queue = new Queue<GraphElementVertex>();
 			queue.Enqueue(startVertex);
 			var isUsed = new Dictionary<GraphElementVertex, bool>(verticesCount);
-			//TODO Get know what 'd' and 'p' is.
-			var d = new Dictionary<GraphElementVertex, int>(verticesCount);
-			var p = new Dictionary<GraphElementVertex, GraphElementVertex>(verticesCount);
 			for (int i = 0; i < verticesCount; i++)
 			{
 				isUsed.Add(DrawingCanvas.GraphStructure.Vertices[i], false);
-				d.Add(DrawingCanvas.GraphStructure.Vertices[i], 0);
-				p.Add(DrawingCanvas.GraphStructure.Vertices[i], DrawingCanvas.GraphStructure.Vertices[i]);
 			}
 
 
 			isUsed[startVertex] = true;
-			p[startVertex] = startVertex;
+			var resultVertexes = new List<GraphElementVertex>(){startVertex};
+			var resultEdges = new HashSet<GraphElementEdge>();
 			while (queue.Count != 0)
 			{
 				var vertex = queue.Dequeue();
-				for (int i = 0; i < vertex.Connections.Count; i++)
+				foreach (GraphElementEdge edge in vertex.Connections)
 				{
-					var to = vertex.Connections[i].Begin == vertex ? vertex.Connections[i].End : vertex.Connections[i].Begin;
+					var to = edge.Begin == vertex ? edge.End : edge.Begin;
 					if (!isUsed[to])
 					{
 						isUsed[to] = true;
 						queue.Enqueue(to);
-						d[to] = d[vertex] + 1;
-						p[to] = vertex;
+
+						resultVertexes.Add(to);
+						resultEdges.Add(edge);
 					}
 				}
 			}
-			var minPathDest = new GraphElementVertex();
-			int min = d.Max(pair => pair.Value);
-			foreach (var pair in d)
-			{
-				if (isUsed[pair.Key] && pair.Value != 0 && min > pair.Value)
-				{
-					min = pair.Value;
-				}
-			}
-			foreach (var pair in d.Where(pair => pair.Value == min))
-			{
-				minPathDest = pair.Key;
-			}
-			var result = new List<GraphElementBase>();
-			for (var i = minPathDest; i != startVertex; i = p[i])
-			{
-				result.Add(i);
-			}
-			//TODO Find edges is needed to be selected.
-			return new AlgorithmResult(min, result);
+
+			var result = new List<GraphElementBase>(resultVertexes);
+			result.AddRange(resultEdges);
+			return new AlgorithmResult(0, result);
 		}
 
 		private List<GraphicsBase> GetSelectedVertices()
 		{
-			return DrawingCanvas.GraphicsList.Cast<GraphicsVertex>().Where(vertex => vertex.IsSelected).Cast<GraphicsBase>().ToList();
+			var list = new List<GraphicsBase>();
+			foreach (var graphic in DrawingCanvas.GraphicsList)
+			{
+				if (graphic is GraphicsVertex && (graphic as GraphicsVertex).IsSelected)
+
+					list.Add(graphic as GraphicsVertex);
+			}
+			return list;
+
 		}
 	}
 }

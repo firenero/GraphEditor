@@ -16,9 +16,8 @@ namespace GraphEditor.Algorithms
 		{
 			if (IsInputCorrect())
 			{
-				HelperFunctions.UnselectAll(DrawingCanvas);
 				var result = RunAlgorithm();
-
+				HelperFunctions.UnselectAll(DrawingCanvas);
 				DrawingCanvas.SelectElements(result.ItemsToSelect);
 				return result.Cost;
 			}

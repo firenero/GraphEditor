@@ -124,17 +124,28 @@ namespace GraphEditor.GraphStruct
             return null;
         }
 		/// <summary>
-		/// Get set o graph edges ordered by ascending.
+		/// Get set o graph edges ordered by weight ascending.
 		/// </summary>
 		/// <returns></returns>
-	    public SortedSet<GraphElementEdge> GetAllEdges()
+	    public IEnumerable<GraphElementEdge> GetAllEdges()
 	    {
-		    var set = new SortedSet<GraphElementEdge>();
+		    var set = new HashSet<GraphElementEdge>();
 		    foreach (var edge in vertices.SelectMany(vertex => vertex.Connections))
 		    {
 			    set.Add(edge);
 		    }
-			return set;
+			return set.OrderBy(edge => edge.Weight);
+	    }
+
+	    public GraphElementEdge GetEdgeBetweenVertex(GraphElementVertex first, GraphElementVertex second)
+	    {
+		    foreach (var edge in first.Connections)
+		    {
+			    var res = edge.Begin == first ? edge.End : edge.Begin;
+			    if (res == second)
+				    return edge;
+		    }
+		    return null;
 	    }
 
 	    public GraphElementBase GetElement(int id)

@@ -13,9 +13,41 @@ namespace GraphEditor.Algorithms
 
 		protected override bool IsInputCorrect()
 		{
-			// Not correct check;
-			// TODO Implement correct check.
-			return DrawingCanvas.GraphStructure.Vertices.All(vertex => vertex.Connections.Count != 0);
+			if (DrawingCanvas.GraphStructure.Vertices.Count == 0)
+				return false;
+
+			var vertices = DrawingCanvas.GraphStructure.Vertices;
+			var verticesCount = vertices.Count;
+			var startVertex = DrawingCanvas.GraphStructure.Vertices[0];
+			var queue = new Queue<GraphElementVertex>();
+			queue.Enqueue(startVertex);
+			var isUsed = new Dictionary<GraphElementVertex, bool>(verticesCount);
+			for (int i = 0; i < verticesCount; i++)
+			{
+				isUsed.Add(DrawingCanvas.GraphStructure.Vertices[i], false);
+			}
+
+
+			isUsed[startVertex] = true;
+			var resultVertexes = new List<GraphElementVertex>() { startVertex };
+			var resultEdges = new HashSet<GraphElementEdge>();
+			while (queue.Count != 0)
+			{
+				var vertex = queue.Dequeue();
+				foreach (GraphElementEdge edge in vertex.Connections)
+				{
+					var to = edge.Begin == vertex ? edge.End : edge.Begin;
+					if (!isUsed[to])
+					{
+						isUsed[to] = true;
+						queue.Enqueue(to);
+
+						resultVertexes.Add(to);
+						resultEdges.Add(edge);
+					}
+				}
+			}
+			return isUsed.All(pair => pair.Value);
 		}
 
 		protected override AlgorithmResult RunAlgorithm()

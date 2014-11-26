@@ -3,7 +3,7 @@ using GraphEditor.PropertiesClasses;
 
 namespace GraphEditor.GraphStruct
 {
-    public class GraphElementEdge : GraphElementBase, IComparable<GraphElementEdge>
+    public class GraphElementEdge : GraphElementBase
     {
         private double weight;
         private GraphElementVertex begin;
@@ -38,21 +38,5 @@ namespace GraphEditor.GraphStruct
         {
             return new PropertiesGraphEdge(this);
         }
-
-	    public int CompareTo(GraphElementEdge other)
-	    {
-		    if (Weight > other.Weight)
-		    {
-			    return 1;
-		    }
-			else if (Weight < other.Weight)
-			{
-				return -1;
-			}
-			else
-			{
-				return 0;
-			}
-	    }
     }
 }
