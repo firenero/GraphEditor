@@ -71,6 +71,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Algorithms\Algorithm.cs" />
+    <Compile Include="Algorithms\AlgorithmResult.cs" />
+    <Compile Include="Algorithms\BfsAlgorithm.cs" />
+    <Compile Include="Algorithms\KruskalAlgorithm.cs" />
     <Compile Include="Commands\CommandAdd.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandChangeState.cs" />

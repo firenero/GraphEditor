@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -158,6 +159,20 @@ namespace GraphEditor
                 }
             }
         }
+
+		public static void SelectElements(GraphCanvas drawingCanvas, IEnumerable<GraphElementBase> itemsToSelect)
+		{
+			foreach (var graphElementBase in itemsToSelect)
+			{
+				foreach (var graphic in drawingCanvas.GraphicsList.Cast<GraphicsBase>())
+				{
+					if (graphic.Id == graphElementBase.ID)
+					{
+						graphic.IsSelected = true;
+					}
+				}
+			}
+		}
 
         public static void VertexMargin(ref Point A, ref Point B, double radiusA, double radiusB)
         {
