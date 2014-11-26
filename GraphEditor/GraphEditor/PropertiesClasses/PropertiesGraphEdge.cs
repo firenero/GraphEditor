@@ -5,7 +5,7 @@ namespace GraphEditor.PropertiesClasses
 {
     public class PropertiesGraphEdge : PropertiesGraphBase
     {
-        private String weight;
+        private double weight;
         private int begin;
         private int end;
 
@@ -23,7 +23,7 @@ namespace GraphEditor.PropertiesClasses
             end = e.End.ID;
         }
 
-        public String Weight
+        public double Weight
         {
             get { return weight; }
             set { weight = value; }

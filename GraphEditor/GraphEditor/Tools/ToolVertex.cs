@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
@@ -25,13 +26,18 @@ namespace GraphEditor.Tools
 	        switch (e.ChangedButton)
 	        {
 		        case MouseButton.Left:
-			        AddNewObject(drawingCanvas, new GraphicsVertex(p, 20.0, "Vertex", drawingCanvas.LineWidth, drawingCanvas.ObjectColor, drawingCanvas.SelectedColor, drawingCanvas.TextColor, drawingCanvas.ActualScale));
-			        drawingCanvas.GraphStructure.AddVertex("Vertex", ((GraphicsVertex)drawingCanvas[drawingCanvas.Count - 1]).Id);
+			        AddNewObject(drawingCanvas, new GraphicsVertex(p, 20.0, GenerateName(drawingCanvas), drawingCanvas.LineWidth, drawingCanvas.ObjectColor, drawingCanvas.SelectedColor, drawingCanvas.TextColor, drawingCanvas.ActualScale));
+					drawingCanvas.GraphStructure.AddVertex(GenerateName(drawingCanvas), ((GraphicsVertex)drawingCanvas[drawingCanvas.Count - 1]).Id);
 			        break;
 		        case MouseButton.Right:
 			        drawingCanvas.Tool = ToolType.Pointer;
 			        break;
 	        }
         }
+
+	    private string GenerateName(GraphCanvas drawingCanvas)
+	    {
+		    return "Vertex" + drawingCanvas.GraphStructure.Vertices.Count.ToString(CultureInfo.InvariantCulture);
+	    }
     }
 }

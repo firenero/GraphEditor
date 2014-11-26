@@ -198,7 +198,7 @@ namespace GraphEditor.Tools
 
         void textBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            drawingCanvas.HideTextbox(cur_graphics);
+            //drawingCanvas.HideTextbox(cur_graphics);
         }
 
         public string OldText

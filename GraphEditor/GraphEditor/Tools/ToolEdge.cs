@@ -85,8 +85,8 @@ namespace GraphEditor.Tools
                         {
                             HelperFunctions.SeclectConnections(drawingCanvas, begin_vertex, true);
                             HelperFunctions.SeclectConnections(drawingCanvas, end_vertex, true);
-                            cur_edge.Label = " ";
-                            drawingCanvas.GraphStructure.AddConnection(begin_vertex.Id, end_vertex.Id, "", cur_edge.Id);
+                            cur_edge.Label = "0";
+                            drawingCanvas.GraphStructure.AddConnection(begin_vertex.Id, end_vertex.Id, 0, cur_edge.Id);
                         }
                         break;
                     }

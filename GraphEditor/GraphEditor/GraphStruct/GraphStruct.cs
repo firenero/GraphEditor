@@ -25,7 +25,7 @@ namespace GraphEditor.GraphStruct
             foreach (var val in vertices)
             {
                 if (id == val.ID) throw new Exception("This vertex already exist!");
-                if (label == val.Label) label += "!";
+                //if (label == val.Label) label += "!";
             }
             GraphElementVertex vertex = new GraphElementVertex(label, id);
             vertices.Add(vertex);
@@ -44,7 +44,7 @@ namespace GraphEditor.GraphStruct
                     break;
                 }
         }
-        public void AddConnection(int id_begin, int id_end, String weight, int id)
+        public void AddConnection(int id_begin, int id_end, double weight, int id)
         {
             foreach (var ver in vertices)
                 foreach (var edg in ver.Connections)

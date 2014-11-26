@@ -965,12 +965,22 @@ namespace GraphEditor
                         GraphElementBase el = GraphStructure.GetElement(graphics.Id);
                         if (graphics is GraphicsEdge)
                         {
-                            try
-                            {
-                                graphics.Label = tmp;
-                                ((GraphElementEdge)el).Weight = tmp;
-                            }
-                            catch (Exception) { }
+	                        try
+	                        {
+		                        ((GraphElementEdge) el).Weight = Convert.ToDouble(tmp);
+		                        graphics.Label = tmp;
+	                        }
+	                        catch (FormatException)
+	                        {
+		                        MessageBox.Show("Edge weight may be only real number", "Naming Error");
+	                        }
+	                        catch (OverflowException)
+	                        {
+								MessageBox.Show(String.Format("Edge weight must be less than {0}.", Double.MaxValue), "Naming Error");
+	                        }
+	                        catch (Exception)
+	                        {
+	                        }
                         }
                         else
                         {

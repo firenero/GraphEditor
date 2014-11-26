@@ -5,14 +5,14 @@ namespace GraphEditor.GraphStruct
 {
     public class GraphElementEdge : GraphElementBase
     {
-        private String weight;
+        private double weight;
         private GraphElementVertex begin;
         private GraphElementVertex end;
 
         public GraphElementEdge()
         {
             ID = 0;
-            Weight = "";
+            Weight = 0.0;
             Begin = End = null;
         }
 
@@ -28,7 +28,7 @@ namespace GraphEditor.GraphStruct
             set { end = value; }
         }
 
-        public String Weight
+        public double Weight
         {
             get { return weight; }
             set { weight = value; }
