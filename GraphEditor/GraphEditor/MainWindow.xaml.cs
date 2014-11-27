@@ -258,5 +258,18 @@ namespace GraphEditor
 		}
 
 		#endregion
+
+		private void DijkstraAlgorithmButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			var dijkstra = new DijkstraAlgorithm(DrawingGraphCanvas);
+			try
+			{
+				MessageBox.Show(String.Format("Total cost: {0}", dijkstra.Execute()), "Algorithm result");
+			}
+			catch (ArgumentException argumentException)
+			{
+				MessageBox.Show(argumentException.Message, "Algorithm error");
+			}
+		}
 	}
 }

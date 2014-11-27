@@ -11,8 +11,9 @@ namespace GraphEditor.Algorithms
 		{
 		}
 
-		protected override bool IsInputCorrect()
+		protected override bool IsInputCorrect(out string message)
 		{
+			message = "The only vertex must be selected.";
 			return GetSelectedVertices().Count == 1;
 		}
 
