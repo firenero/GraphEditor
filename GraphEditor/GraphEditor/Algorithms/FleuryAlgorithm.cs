@@ -66,7 +66,7 @@ namespace GraphEditor.Algorithms
 			}
 			var result = new List<GraphElementBase>(resultVertices);
 			result.AddRange(resultEdges);
-			return new AlgorithmResult(resultVertices.Count, result);
+			return new AlgorithmResult(DrawingCanvas.GraphStructure.Vertices.Count, result);
 		}
 
 		private int GetUnusedConnections(GraphElementVertex vertex, Dictionary<GraphElementEdge, bool> isUsed)

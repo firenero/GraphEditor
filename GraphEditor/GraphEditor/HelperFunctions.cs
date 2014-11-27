@@ -222,12 +222,15 @@ namespace GraphEditor
 
             foreach (GraphicsBase g in drawingCanvas.GraphicsList)
                 if (g.IsSelected)
-                    if (g is GraphicsVertex)
-                        drawingCanvas.GraphStructure.RemoveVertex(g.Id);
-                    else if (g is GraphicsEdge)
-                        drawingCanvas.GraphStructure.RemoveConnection(g.Id);
+	                if (g is GraphicsVertex)
+	                {
+						SeclectConnections(drawingCanvas, g, false);
+		                drawingCanvas.GraphStructure.RemoveVertex(g.Id);
+	                }
+	                else if (g is GraphicsEdge)
+		                drawingCanvas.GraphStructure.RemoveConnection(g.Id);
 
-            for (int i = drawingCanvas.Count - 1; i >= 0; i--)
+	        for (int i = drawingCanvas.Count - 1; i >= 0; i--)
             {
                 if (drawingCanvas[i].IsSelected)
                 {
