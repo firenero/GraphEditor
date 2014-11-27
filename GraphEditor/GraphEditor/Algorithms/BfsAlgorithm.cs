@@ -13,6 +13,11 @@ namespace GraphEditor.Algorithms
 
 		protected override bool IsInputCorrect(out string message)
 		{
+			if (DrawingCanvas.IsOrientedGraph)
+			{
+				message = "Algorithms are available only for not-oriented graphs.";
+				return false; 
+			}
 			message = "The only vertex must be selected.";
 			return GetSelectedVertices().Count == 1;
 		}

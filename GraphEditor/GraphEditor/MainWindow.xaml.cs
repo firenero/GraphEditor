@@ -135,7 +135,7 @@ namespace GraphEditor
 			var kruskalAlgorithm = new KruskalAlgorithm(DrawingGraphCanvas);
 			try
 			{
-				MessageBox.Show(String.Format("Total cost: {0}", kruskalAlgorithm.Execute()), "Algorithm result");
+				MessageBox.Show(String.Format("Total cost: {0}.", kruskalAlgorithm.Execute()), "Algorithm result");
 			}
 			catch (ArgumentException argumentException)
 			{
@@ -148,7 +148,7 @@ namespace GraphEditor
 			var bfs = new BfsAlgorithm(DrawingGraphCanvas);
 			try
 			{
-				MessageBox.Show(String.Format("Minimum lenght: {0}", bfs.Execute()), "Algorithm result");
+				MessageBox.Show(String.Format("Minimum lenght: {0}.", bfs.Execute()), "Algorithm result");
 			}
 			catch (ArgumentException argumentException)
 			{
@@ -264,7 +264,20 @@ namespace GraphEditor
 			var dijkstra = new DijkstraAlgorithm(DrawingGraphCanvas);
 			try
 			{
-				MessageBox.Show(String.Format("Total cost: {0}", dijkstra.Execute()), "Algorithm result");
+				MessageBox.Show(String.Format("Total cost: {0}.", dijkstra.Execute()), "Algorithm result");
+			}
+			catch (ArgumentException argumentException)
+			{
+				MessageBox.Show(argumentException.Message, "Algorithm error");
+			}
+		}
+
+		private void FleuryAlgorithmButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			var fleury = new FleuryAlgorithm(DrawingGraphCanvas);
+			try
+			{
+				MessageBox.Show(String.Format("Cycle consist of {0} vertices.", fleury.Execute()), "Algorithm result");
 			}
 			catch (ArgumentException argumentException)
 			{

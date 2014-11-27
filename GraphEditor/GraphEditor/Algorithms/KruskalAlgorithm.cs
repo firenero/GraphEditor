@@ -13,6 +13,11 @@ namespace GraphEditor.Algorithms
 
 		protected override bool IsInputCorrect(out string message)
 		{
+			if (DrawingCanvas.IsOrientedGraph)
+			{
+				message = "Algorithms are available only for not-oriented graphs.";
+				return false;
+			}
 			if (DrawingCanvas.GraphStructure.Vertices.Count == 0)
 			{
 				message = "No vertices in graph.";

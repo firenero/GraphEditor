@@ -78,7 +78,7 @@
 				<Button Grid.Row="6" x:Name="KruskalAlgorithmButton" Content="{StaticResource KruskalIconPath}" Background="{StaticResource PrimaryButtonColor}" Click="KruskalAlgorithmButton_OnClick" />
 				<Button Grid.Row="7" x:Name="DijkstraAlgorithmButton" Content="{StaticResource DijkstraIconPath}" Background="{StaticResource PrimaryButtonColor}" Click="DijkstraAlgorithmButton_OnClick" />
 				<Button Grid.Row="8" x:Name="BfsAlgorithmButton" Content="{StaticResource BfsIconPath}" Background="{StaticResource PrimaryButtonColor}" Click="BfsAlgorithmButton_OnClick"/>
-				<Button Grid.Row="9" x:Name="FleuryAlgorithmButton" Content="{StaticResource FleuryIconPath}" Background="{StaticResource PrimaryButtonColor}"/>
+				<Button Grid.Row="9" x:Name="FleuryAlgorithmButton" Content="{StaticResource FleuryIconPath}" Background="{StaticResource PrimaryButtonColor}" Click="FleuryAlgorithmButton_OnClick"/>
 			</Grid>
 
 			<Grid Grid.Column="1">
