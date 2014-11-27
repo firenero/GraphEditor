@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GraphEditor.Graphics;
 using GraphEditor.GraphStruct;
+using Xceed.Wpf.Toolkit;
 
 namespace GraphEditor.Algorithms
 {

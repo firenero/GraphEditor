@@ -2,9 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 	<SolidColorBrush x:Key="PrimaryMousePressedColor" x:Shared="False" Color="CornflowerBlue" />
-	<SolidColorBrush x:Key="PrimaryMouseOverColor" x:Shared="False" Color="LightGray" />
-	<SolidColorBrush x:Key="PrimaryPanelColor" x:Shared="False" Color="DimGray" />
-	<SolidColorBrush x:Key="PrimaryButtonColor" x:Shared="False" Color="DimGray" />
+	<SolidColorBrush x:Key="PrimaryMouseOverColor" x:Shared="False" Color="Black" />
+	
+	<SolidColorBrush x:Key="PrimaryPanelColor" x:Shared="False" Color="#FF2D2D30" />
+	<SolidColorBrush x:Key="PrimaryHeaderPanelColor" x:Shared="False" Color="#414146" />
+
+	<SolidColorBrush x:Key="PrimaryHeaderButtonColor" x:Shared="False" Color="#414146" />
+	<SolidColorBrush x:Key="PrimaryButtonColor" x:Shared="False" Color="#414146" />
+	<SolidColorBrush x:Key="PrimaryAlgoButtonColor" x:Shared="False" Color="#FF2D2D30" />
 	<SolidColorBrush x:Key="PrimaryContentColor" x:Shared="False" Color="White" />
+
+	<SolidColorBrush x:Key="PrimaryCanvasColor" x:Shared="False" Color="#FF1E1E1E" />
+
 
 </ResourceDictionary>
