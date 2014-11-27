@@ -3,48 +3,34 @@ using GraphEditor.GraphStruct;
 
 namespace GraphEditor.PropertiesClasses
 {
-    public class PropertiesGraphEdge : PropertiesGraphBase
-    {
-        private double weight;
-        private int begin;
-        private int end;
+	public class PropertiesGraphEdge : PropertiesGraphBase
+	{
+		public PropertiesGraphEdge()
+		{
+		}
 
-        public PropertiesGraphEdge() { }
+		public PropertiesGraphEdge(GraphElementEdge e)
+		{
+			if (e == null)
+			{
+				throw new ArgumentNullException("GraphElementVertex");
+			}
+			id = e.ID;
+			Weight = e.Weight;
+			Begin = e.Begin.ID;
+			End = e.End.ID;
+		}
 
-        public PropertiesGraphEdge(GraphElementEdge e) 
-        {
-            if (e == null)
-            {
-                throw new ArgumentNullException("GraphElementVertex");
-            }
-            id = e.ID;
-            weight = e.Weight;
-            begin = e.Begin.ID;
-            end = e.End.ID;
-        }
+		public double Weight { get; set; }
 
-        public double Weight
-        {
-            get { return weight; }
-            set { weight = value; }
-        }
+		public int Begin { get; set; }
 
-        public int Begin
-        {
-            get { return begin; }
-            set { begin = value; }
-        }
+		public int End { get; set; }
 
-        public int End
-        {
-            get { return end; }
-            set { end = value; }
-        }
-
-        public int ID
-        {
-            get { return id; }
-            set { id = value; }
-        }
-    }
+		public int Id
+		{
+			get { return id; }
+			set { id = value; }
+		}
+	}
 }

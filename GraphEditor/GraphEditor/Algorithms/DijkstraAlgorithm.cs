@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Media;
 using GraphEditor.Graphics;
 using GraphEditor.GraphStruct;
 
 namespace GraphEditor.Algorithms
 {
-	class DijkstraAlgorithm : Algorithm
+	internal class DijkstraAlgorithm : Algorithm
 	{
 		public DijkstraAlgorithm(GraphCanvas drawingCanvas) : base(drawingCanvas)
 		{
@@ -38,7 +39,7 @@ namespace GraphEditor.Algorithms
 		protected override AlgorithmResult RunAlgorithm()
 		{
 			var vertices = DrawingCanvas.GraphStructure.Vertices;
-			var verticesCount = vertices.Count;
+			int verticesCount = vertices.Count;
 			var startVertex = (GraphElementVertex) HelperFunctions.GetGraphElement(DrawingCanvas, GetSelectedVertices().First());
 
 			var dest = new Dictionary<GraphElementVertex, double>(verticesCount);
@@ -68,10 +69,10 @@ namespace GraphEditor.Algorithms
 				if (Double.IsPositiveInfinity(dest[vertex]))
 					break;
 				used[vertex] = true;
-				for (int j = 0; j < vertex.Connections.Count; j++)
+				foreach (var edge in vertex.Connections)
 				{
-					var to = vertex.Connections[j].Begin == vertex ? vertex.Connections[j].End : vertex.Connections[j].Begin;
-					double cost = vertex.Connections[j].Weight;
+					var to = edge.Begin == vertex ? edge.End : edge.Begin;
+					double cost = edge.Weight;
 					if (dest[vertex] + cost < dest[to])
 					{
 						dest[to] = dest[vertex] + cost;
@@ -94,15 +95,9 @@ namespace GraphEditor.Algorithms
 
 		private List<GraphicsBase> GetSelectedVertices()
 		{
-			var list = new List<GraphicsBase>();
-			foreach (var graphic in DrawingCanvas.GraphicsList)
-			{
-				if (graphic is GraphicsVertex && (graphic as GraphicsVertex).IsSelected)
-
-					list.Add(graphic as GraphicsVertex);
-			}
-			return list;
-
+			return
+				(from Visual graphic in DrawingCanvas.GraphicsList where graphic is GraphicsVertex && (graphic as GraphicsVertex).IsSelected select graphic as GraphicsVertex)
+					.Cast<GraphicsBase>().ToList();
 		}
 	}
 }

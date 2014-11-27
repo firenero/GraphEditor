@@ -5,7 +5,7 @@ using GraphEditor.GraphStruct;
 
 namespace GraphEditor.Algorithms
 {
-	class BfsAlgorithm : Algorithm
+	internal class BfsAlgorithm : Algorithm
 	{
 		public BfsAlgorithm(GraphCanvas drawingCanvas) : base(drawingCanvas)
 		{
@@ -16,7 +16,7 @@ namespace GraphEditor.Algorithms
 			if (DrawingCanvas.IsOrientedGraph)
 			{
 				message = "Algorithms are available only for not-oriented graphs.";
-				return false; 
+				return false;
 			}
 			message = "The only vertex must be selected.";
 			return GetSelectedVertices().Count == 1;
@@ -25,7 +25,7 @@ namespace GraphEditor.Algorithms
 		protected override AlgorithmResult RunAlgorithm()
 		{
 			var vertices = DrawingCanvas.GraphStructure.Vertices;
-			var verticesCount = vertices.Count;
+			int verticesCount = vertices.Count;
 			var startVertex = (GraphElementVertex) HelperFunctions.GetGraphElement(DrawingCanvas, GetSelectedVertices().First());
 			var queue = new Queue<GraphElementVertex>();
 			queue.Enqueue(startVertex);
@@ -37,12 +37,12 @@ namespace GraphEditor.Algorithms
 
 
 			isUsed[startVertex] = true;
-			var resultVertexes = new List<GraphElementVertex>(){startVertex};
+			var resultVertexes = new List<GraphElementVertex> {startVertex};
 			var resultEdges = new HashSet<GraphElementEdge>();
 			while (queue.Count != 0)
 			{
 				var vertex = queue.Dequeue();
-				foreach (GraphElementEdge edge in vertex.Connections)
+				foreach (var edge in vertex.Connections)
 				{
 					var to = edge.Begin == vertex ? edge.End : edge.Begin;
 					if (!isUsed[to])
@@ -71,7 +71,6 @@ namespace GraphEditor.Algorithms
 					list.Add(graphic as GraphicsVertex);
 			}
 			return list;
-
 		}
 	}
 }

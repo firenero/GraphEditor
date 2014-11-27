@@ -4,40 +4,41 @@ using GraphEditor.PropertiesClasses;
 
 namespace GraphEditor.Commands
 {
-    class CommandDeleteAll : CommandBase
-    {
-        List<PropertiesGraphicsBase> cloneList;
+	internal class CommandDeleteAll : CommandBase
+	{
+		private List<PropertiesGraphicsBase> cloneList;
 
-        // Create this command BEFORE applying Delete All function.
-        public CommandDeleteAll(GraphCanvas drawingCanvas)
-        {
-            cloneList = new List<PropertiesGraphicsBase>();
+		// Create this command BEFORE applying Delete All function.
+		public CommandDeleteAll(GraphCanvas drawingCanvas)
+		{
+			cloneList = new List<PropertiesGraphicsBase>();
 
-            // Make clone of the whole list.
-            foreach (GraphicsBase g in drawingCanvas.GraphicsList)
-            {
-                cloneList.Add(g.CreateSerializedObject());
-            }
-        }
-        /// <summary>
-        /// Add all deleted objects to GraphicsList
-        /// </summary>
-        public override void Undo(GraphCanvas drawingCanvas)
-        {
-            foreach (PropertiesGraphicsBase o in cloneList)
-            {
-                drawingCanvas.GraphicsList.Add(o.CreateGraphics());
-            }
+			// Make clone of the whole list.
+			foreach (GraphicsBase g in drawingCanvas.GraphicsList)
+			{
+				cloneList.Add(g.CreateSerializedObject());
+			}
+		}
 
-            drawingCanvas.RefreshClip();
-        }
+		/// <summary>
+		///     Add all deleted objects to GraphicsList
+		/// </summary>
+		public override void Undo(GraphCanvas drawingCanvas)
+		{
+			foreach (var o in cloneList)
+			{
+				drawingCanvas.GraphicsList.Add(o.CreateGraphics());
+			}
 
-        /// <summary>
-        /// Detete All again
-        /// </summary>
-        public override void Redo(GraphCanvas drawingCanvas)
-        {
-            drawingCanvas.GraphicsList.Clear();
-        }
-    }
+			drawingCanvas.RefreshClip();
+		}
+
+		/// <summary>
+		///     Detete All again
+		/// </summary>
+		public override void Redo(GraphCanvas drawingCanvas)
+		{
+			drawingCanvas.GraphicsList.Clear();
+		}
+	}
 }

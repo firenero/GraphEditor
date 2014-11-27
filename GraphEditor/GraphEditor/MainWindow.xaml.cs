@@ -1,17 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using GraphEditor.Algorithms;
 using GraphEditor.IO;
 using GraphEditor.Tools;
@@ -20,7 +8,7 @@ using Microsoft.Win32;
 namespace GraphEditor
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	///     Interaction logic for MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow : Window
 	{
@@ -80,7 +68,7 @@ namespace GraphEditor
 		private void OrientedGraphToggleButton_OnUnchecked(object sender, RoutedEventArgs e)
 		{
 			DrawingGraphCanvas.IsOrientedGraph = false;
-		} 
+		}
 
 		#endregion
 
@@ -169,17 +157,17 @@ namespace GraphEditor
 		}
 
 		/// <summary>
-		/// Open new graph
+		///     Open new graph
 		/// </summary>
-		/// <returns>New file name if open success else old file name.</returns>>
+		/// <returns>New file name if open success else old file name.</returns>
+		/// >
 		private void Open()
 		{
-			var openFileDialog = new OpenFileDialog()
-			{
-				Filter = "XML files (*.xml)|*.xml|All Files|*.*",
-				DefaultExt = "xml",
-				InitialDirectory = Environment.CurrentDirectory
-			};
+			var openFileDialog = new OpenFileDialog
+			                     {
+				                     Filter = "XML files (*.xml)|*.xml|All Files|*.*",
+				                     DefaultExt = "xml",
+			                     };
 			if (openFileDialog.ShowDialog() != false)
 			{
 				try
@@ -208,12 +196,11 @@ namespace GraphEditor
 
 		private void SaveAs()
 		{
-			var saveFileDialog = new SaveFileDialog()
-			{
-				Filter = "XML files (*.xml)|*.xml|All Files|*.*",
-				DefaultExt = "xml",
-				InitialDirectory = Environment.CurrentDirectory
-			};
+			var saveFileDialog = new SaveFileDialog
+			                     {
+				                     Filter = "XML files (*.xml)|*.xml|All Files|*.*",
+				                     DefaultExt = "xml",
+			                     };
 
 			if (saveFileDialog.ShowDialog() != false)
 			{

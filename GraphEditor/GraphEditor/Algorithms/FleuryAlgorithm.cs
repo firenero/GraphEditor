@@ -4,7 +4,7 @@ using GraphEditor.GraphStruct;
 
 namespace GraphEditor.Algorithms
 {
-	class FleuryAlgorithm : Algorithm
+	internal class FleuryAlgorithm : Algorithm
 	{
 		public FleuryAlgorithm(GraphCanvas drawingCanvas) : base(drawingCanvas)
 		{

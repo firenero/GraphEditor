@@ -4,52 +4,49 @@ using GraphEditor.PropertiesClasses;
 
 namespace GraphEditor.Graphics
 {
-    class GraphicsSelectionRectangle : GraphicsRectangleBase
-    {
+	internal class GraphicsSelectionRectangle : GraphicsRectangleBase
+	{
+		public GraphicsSelectionRectangle(double left, double top, double right, double bottom, double actualScale)
+		{
+			rectangleLeft = left;
+			rectangleTop = top;
+			rectangleRight = right;
+			rectangleBottom = bottom;
+			graphicsLineWidth = 1.0;
+			graphicsActualScale = actualScale;
+		}
 
-        public GraphicsSelectionRectangle(double left, double top, double right, double bottom, double actualScale)
-        {
-            this.rectangleLeft = left;
-            this.rectangleTop = top;
-            this.rectangleRight = right;
-            this.rectangleBottom = bottom;
-            this.graphicsLineWidth = 1.0;
-            this.graphicsActualScale = actualScale;
-        }
+		public GraphicsSelectionRectangle()
+			:
+				this(0.0, 0.0, 100.0, 100.0, 1.0)
+		{
+		}
 
-        public GraphicsSelectionRectangle()
-            :
-            this(0.0, 0.0, 100.0, 100.0, 1.0)
-        {
-        }
-
-        /// <summary>
-        /// Draw graphics object
-        /// </summary>
-        public override void Draw(DrawingContext drawingContext)
-        {
-            /*drawingContext.DrawRectangle(
+		/// <summary>
+		///     Draw graphics object
+		/// </summary>
+		public override void Draw(DrawingContext drawingContext)
+		{
+			/*drawingContext.DrawRectangle(
                 null,
                 new Pen(Brushes.White, ActualLineWidth),
                 Rectangle);*/
-            
-            DashStyle dashStyle = new DashStyle();
-            dashStyle.Dashes.Add(5);
 
-            Pen dashedPen = new Pen(new SolidColorBrush(Colors.Black), ActualLineWidth);
-            dashedPen.DashStyle = dashStyle;
-            drawingContext.DrawRectangle(null, dashedPen, Rectangle);
-        }
+			var dashStyle = new DashStyle();
+			dashStyle.Dashes.Add(5);
 
-        public override bool Contains(Point point)
-        {
-            return this.Rectangle.Contains(point);
-        }
+			var dashedPen = new Pen(new SolidColorBrush(Colors.Black), ActualLineWidth) {DashStyle = dashStyle};
+			drawingContext.DrawRectangle(null, dashedPen, Rectangle);
+		}
 
-        public override PropertiesGraphicsBase CreateSerializedObject()
-        {
-            return null;        // not used
-        }
+		public override bool Contains(Point point)
+		{
+			return Rectangle.Contains(point);
+		}
 
-    }
+		public override PropertiesGraphicsBase CreateSerializedObject()
+		{
+			return null; // not used
+		}
+	}
 }

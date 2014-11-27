@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using GraphEditor.Graphics;
 using GraphEditor.GraphStruct;
-using Xceed.Wpf.Toolkit;
 
 namespace GraphEditor.Algorithms
 {
-	class KruskalAlgorithm : Algorithm
+	internal class KruskalAlgorithm : Algorithm
 	{
 		public KruskalAlgorithm(GraphCanvas drawingCanvas) : base(drawingCanvas)
 		{
@@ -32,7 +30,7 @@ namespace GraphEditor.Algorithms
 		protected override AlgorithmResult RunAlgorithm()
 		{
 			var edges = DrawingCanvas.GraphStructure.GetAllEdges().ToList();
-			var sum = 0.0;
+			double sum = 0.0;
 			var treeId = new Dictionary<GraphElementVertex, int>(DrawingCanvas.GraphStructure.Vertices.Count);
 			var resultEdges = new List<GraphElementBase>();
 			var resultVertexes = new HashSet<GraphElementBase>();
@@ -40,25 +38,24 @@ namespace GraphEditor.Algorithms
 			{
 				treeId.Add(DrawingCanvas.GraphStructure.Vertices[i], i);
 			}
-			for (int i = 0; i < edges.Count; i++)
+			foreach (var edge in edges)
 			{
-				GraphElementVertex begin = edges[i].Begin, end = edges[i].End;
-				var weight = edges[i].Weight;
+				GraphElementVertex begin = edge.Begin, end = edge.End;
+				double weight = edge.Weight;
 				if (treeId[begin] != treeId[end])
 				{
 					sum += weight;
-					resultEdges.Add(edges[i]);
+					resultEdges.Add(edge);
 					resultVertexes.Add(begin);
 					resultVertexes.Add(end);
 					int oldId = treeId[end], newId = treeId[begin];
-					for (int j = 0; j < DrawingCanvas.GraphStructure.Vertices.Count; ++j)
-						if (treeId[DrawingCanvas.GraphStructure.Vertices[j]] == oldId)
-							treeId[DrawingCanvas.GraphStructure.Vertices[j]] = newId;
+					foreach (var vertex in DrawingCanvas.GraphStructure.Vertices)
+						if (treeId[vertex] == oldId)
+							treeId[vertex] = newId;
 				}
 			}
 			resultEdges.AddRange(resultVertexes);
 			return new AlgorithmResult(sum, resultEdges);
 		}
-
 	}
 }

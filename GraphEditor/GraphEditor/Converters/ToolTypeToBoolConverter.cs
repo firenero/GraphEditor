@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using GraphEditor.Tools;
 
 namespace GraphEditor.Converters
 {
-	class ToolTypeToBoolConverter : IValueConverter
+	internal class ToolTypeToBoolConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
@@ -24,13 +20,12 @@ namespace GraphEditor.Converters
 					return ToolType.Eraser == type;
 				default:
 					return ToolType.Pointer;
-
 			}
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			var boolean = value is bool && (bool) value;
+			bool boolean = value is bool && (bool) value;
 			switch (parameter.ToString().ToLowerInvariant())
 			{
 				case "vertex":

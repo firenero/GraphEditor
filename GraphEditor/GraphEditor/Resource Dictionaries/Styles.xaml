@@ -41,7 +41,7 @@
 						</Storyboard>
 					</VisualState>
 					
-					<VisualState Name="Key"></VisualState>
+					<VisualState Name="Key" />
 				</VisualStateGroup>
 				
 			</VisualStateManager.VisualStateGroups>

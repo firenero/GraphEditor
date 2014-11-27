@@ -1,92 +1,90 @@
 ﻿using System.IO;
-using System.Windows;
 using System.Windows.Input;
 using GraphEditor.Graphics;
-using GraphEditor.GraphStruct;
+using GraphEditor.Properties;
 
 namespace GraphEditor.Tools
 {
-    class ToolEraser : ToolObject
-    {
-        GraphicsBase deletedObject = null;
-        public ToolEraser()
-        {
-			MemoryStream stream = new MemoryStream(GraphEditor.Properties.Resources.Eraser);
-            ToolCursor = new Cursor(stream);
-        }
+	internal class ToolEraser : ToolObject
+	{
+		private GraphicsBase deletedObject;
 
-        public override void OnMouseDown(GraphCanvas drawingCanvas, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Right) return;
-            Point point = e.GetPosition(drawingCanvas);
-            GraphicsBase o;
-            deletedObject = null;
+		public ToolEraser()
+		{
+			var stream = new MemoryStream(Resources.Eraser);
+			ToolCursor = new Cursor(stream);
+		}
 
-            for (int i = drawingCanvas.GraphicsList.Count - 1; i >= 0; i--)
-            {
-                o = drawingCanvas[i];
+		public override void OnMouseDown(GraphCanvas drawingCanvas, MouseButtonEventArgs e)
+		{
+			if (e.ChangedButton == MouseButton.Right) return;
+			var point = e.GetPosition(drawingCanvas);
+			deletedObject = null;
 
-                if (o.MakeHitTest(point) == 0)
-                {
-                    deletedObject = o;
-                    break;
-                }
-            }
+			for (int i = drawingCanvas.GraphicsList.Count - 1; i >= 0; i--)
+			{
+				var o = drawingCanvas[i];
 
-            if (deletedObject == null)
-                HelperFunctions.UnselectAll(drawingCanvas);
-            drawingCanvas.CaptureMouse();
-        }
+				if (o.MakeHitTest(point) == 0)
+				{
+					deletedObject = o;
+					break;
+				}
+			}
 
-        public override void OnMouseMove(GraphCanvas drawingCanvas, MouseEventArgs e)
-        {
-            if (e.MiddleButton == MouseButtonState.Pressed || e.RightButton == MouseButtonState.Pressed)
-                return;
+			if (deletedObject == null)
+				HelperFunctions.UnselectAll(drawingCanvas);
+			drawingCanvas.CaptureMouse();
+		}
 
-            Point point = e.GetPosition(drawingCanvas);
+		public override void OnMouseMove(GraphCanvas drawingCanvas, MouseEventArgs e)
+		{
+			if (e.MiddleButton == MouseButtonState.Pressed || e.RightButton == MouseButtonState.Pressed)
+				return;
 
-            if (e.LeftButton == MouseButtonState.Pressed)
-                for (int i = 0; i < drawingCanvas.Count; i++)
-                    if(0 == drawingCanvas[i].MakeHitTest(point))
-                        Delete(drawingCanvas, drawingCanvas[i]);
+			var point = e.GetPosition(drawingCanvas);
 
-            if (!drawingCanvas.IsMouseCaptured)
-                return;
-        }
+			if (e.LeftButton == MouseButtonState.Pressed)
+				for (int i = 0; i < drawingCanvas.Count; i++)
+					if (0 == drawingCanvas[i].MakeHitTest(point))
+						Delete(drawingCanvas, drawingCanvas[i]);
 
-        public override void OnMouseUp(GraphCanvas drawingCanvas, MouseButtonEventArgs e)
-        {
-            if (!drawingCanvas.IsMouseCaptured)
-                return;
-            Point point = e.GetPosition(drawingCanvas);
-            if (deletedObject != null && deletedObject.MakeHitTest(point) == 0)
-                Delete(drawingCanvas, deletedObject);
-            drawingCanvas.ReleaseMouseCapture();
-        }
+			if (!drawingCanvas.IsMouseCaptured)
+				return;
+		}
 
-        private void Delete(GraphCanvas drawingCanvas, GraphicsBase deleted)
-        {
-            drawingCanvas.UnselectAll();
-            deleted.IsSelected = true;
-            HelperFunctions.SeclectConnections(drawingCanvas, deleted, false);
-            foreach(GraphicsBase sel in drawingCanvas.GraphicsList)
-            if (sel.IsSelected && sel is GraphicsEdge)
-            {
-                GraphElementEdge edge = drawingCanvas.GraphStructure.GetEdge(sel.Id);
-                int cnt_vert = 2;
-                foreach (GraphicsBase val in drawingCanvas.GraphicsList)
-                {
-                    if (edge.Begin.ID == val.Id || edge.End.ID == val.Id)
-                    {
-                        ((GraphicsVertex)val).DecSize(5);
-                        HelperFunctions.SeclectConnections(drawingCanvas, val, true);
-                        cnt_vert--;
-                    }
-                    if (cnt_vert <= 0) break;
-                }
-            }
-            drawingCanvas.Delete();
-        }
+		public override void OnMouseUp(GraphCanvas drawingCanvas, MouseButtonEventArgs e)
+		{
+			if (!drawingCanvas.IsMouseCaptured)
+				return;
+			var point = e.GetPosition(drawingCanvas);
+			if (deletedObject != null && deletedObject.MakeHitTest(point) == 0)
+				Delete(drawingCanvas, deletedObject);
+			drawingCanvas.ReleaseMouseCapture();
+		}
 
-    }
+		private void Delete(GraphCanvas drawingCanvas, GraphicsBase deleted)
+		{
+			drawingCanvas.UnselectAll();
+			deleted.IsSelected = true;
+			HelperFunctions.SeclectConnections(drawingCanvas, deleted, false);
+			foreach (GraphicsBase sel in drawingCanvas.GraphicsList)
+				if (sel.IsSelected && sel is GraphicsEdge)
+				{
+					var edge = drawingCanvas.GraphStructure.GetEdge(sel.Id);
+					int cntVert = 2;
+					foreach (GraphicsBase val in drawingCanvas.GraphicsList)
+					{
+						if (edge.Begin.ID == val.Id || edge.End.ID == val.Id)
+						{
+							((GraphicsVertex) val).DecSize(5);
+							HelperFunctions.SeclectConnections(drawingCanvas, val, true);
+							cntVert--;
+						}
+						if (cntVert <= 0) break;
+					}
+				}
+			drawingCanvas.Delete();
+		}
+	}
 }

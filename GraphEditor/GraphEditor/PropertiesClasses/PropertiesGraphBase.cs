@@ -2,9 +2,8 @@
 
 namespace GraphEditor.PropertiesClasses
 {
-    public abstract class PropertiesGraphBase
-    {
-        [XmlIgnore]
-        internal int id = 0;
-    }
+	public abstract class PropertiesGraphBase
+	{
+		[XmlIgnore] internal int id = 0;
+	}
 }

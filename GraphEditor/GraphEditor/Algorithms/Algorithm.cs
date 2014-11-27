@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Documents;
 using GraphEditor.GraphStruct;
 
 namespace GraphEditor.Algorithms
 {
 	public abstract class Algorithm
 	{
+		protected Algorithm(GraphCanvas drawingCanvas)
+		{
+			DrawingCanvas = drawingCanvas;
+		}
+
 		public GraphCanvas DrawingCanvas { get; private set; }
 
 		protected abstract bool IsInputCorrect(out string message);
@@ -25,15 +27,13 @@ namespace GraphEditor.Algorithms
 				DrawingCanvas.SelectElements(result.ItemsToSelect);
 				return result.Cost;
 			}
-			else
-				throw new ArgumentException(message);
-
+			throw new ArgumentException(message);
 		}
 
 		protected virtual Dictionary<GraphElementVertex, bool> SameTreeChecking()
 		{
 			var vertices = DrawingCanvas.GraphStructure.Vertices;
-			var verticesCount = vertices.Count;
+			int verticesCount = vertices.Count;
 			var startVertex = DrawingCanvas.GraphStructure.Vertices[0];
 			var queue = new Queue<GraphElementVertex>();
 			queue.Enqueue(startVertex);
@@ -48,7 +48,7 @@ namespace GraphEditor.Algorithms
 			while (queue.Count != 0)
 			{
 				var vertex = queue.Dequeue();
-				foreach (GraphElementEdge edge in vertex.Connections)
+				foreach (var edge in vertex.Connections)
 				{
 					var to = edge.Begin == vertex ? edge.End : edge.Begin;
 					if (!isUsed[to])
@@ -59,11 +59,6 @@ namespace GraphEditor.Algorithms
 				}
 			}
 			return isUsed;
-		}
-
-		protected Algorithm(GraphCanvas drawingCanvas)
-		{
-			DrawingCanvas = drawingCanvas;
 		}
 	}
 }

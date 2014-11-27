@@ -5,29 +5,20 @@ using GraphEditor.Graphics;
 
 namespace GraphEditor.PropertiesClasses
 {
-    public abstract class PropertiesGraphicsBase
-    {
-        [XmlIgnore]
-        internal int id;
+	public abstract class PropertiesGraphicsBase
+	{
+		[XmlIgnore] internal double actualScale;
+		[XmlIgnore] internal int id;
 
-        [XmlIgnore]
-        internal bool selected;
+		[XmlIgnore] internal String label;
 
-        [XmlIgnore]
-        internal double actualScale;
+		[XmlIgnore] internal Color objectColor;
+		[XmlIgnore] internal bool selected;
 
-        [XmlIgnore]
-        internal String label;
-       
-        [XmlIgnore]
-        internal Color objectColor;
+		[XmlIgnore] internal Color selectedColor;
 
-        [XmlIgnore]
-        internal Color selectedColor;
+		[XmlIgnore] internal Color textColor;
 
-	    [XmlIgnore] 
-		internal Color textColor;
-
-        public abstract GraphicsBase CreateGraphics();
-    }
+		public abstract GraphicsBase CreateGraphics();
+	}
 }

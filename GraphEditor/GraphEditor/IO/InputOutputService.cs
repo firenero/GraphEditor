@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
-using GraphEditor.PropertiesClasses;
 
 namespace GraphEditor.IO
 {
@@ -11,9 +10,9 @@ namespace GraphEditor.IO
 		{
 			try
 			{
-				SerializationHelper helper = new SerializationHelper(canvas.GraphicsList, canvas.GraphStructure);
+				var helper = new SerializationHelper(canvas.GraphicsList, canvas.GraphStructure);
 
-				XmlSerializer xml = new XmlSerializer(typeof(SerializationHelper));
+				var xml = new XmlSerializer(typeof (SerializationHelper));
 
 				using (Stream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
 				{
@@ -29,19 +28,19 @@ namespace GraphEditor.IO
 		}
 
 		/// <summary>
-		/// Load graphics from XML file.
-		/// Throws: DrawingCanvasException.
+		///     Load graphics from XML file.
+		///     Throws: DrawingCanvasException.
 		/// </summary>
 		public static void Load(string fileName, GraphCanvas canvas)
 		{
 			try
 			{
 				SerializationHelper helper;
-				XmlSerializer xml = new XmlSerializer(typeof(SerializationHelper));
+				var xml = new XmlSerializer(typeof (SerializationHelper));
 
 				using (Stream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
 				{
-					helper = (SerializationHelper)xml.Deserialize(stream);
+					helper = (SerializationHelper) xml.Deserialize(stream);
 				}
 
 				if (helper.Graphics == null)
@@ -52,11 +51,11 @@ namespace GraphEditor.IO
 				canvas.GraphicsList.Clear();
 				canvas.GraphStructure.Clear();
 
-				foreach (PropertiesGraphicsBase g in helper.Graphics)
+				foreach (var g in helper.Graphics)
 				{
 					canvas.GraphicsList.Add(g.CreateGraphics());
 				}
-				foreach (PropertiesGraphBase g in helper.Elements)
+				foreach (var g in helper.Elements)
 				{
 					canvas.GraphStructure.AddElement(g);
 				}
