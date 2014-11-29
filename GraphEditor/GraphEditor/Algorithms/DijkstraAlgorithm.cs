@@ -7,7 +7,7 @@ using GraphEditor.GraphStruct;
 
 namespace GraphEditor.Algorithms
 {
-	internal class DijkstraAlgorithm : Algorithm
+	internal class DijkstraAlgorithm : SelectionAlgorithm
 	{
 		public DijkstraAlgorithm(GraphCanvas drawingCanvas) : base(drawingCanvas)
 		{
@@ -93,11 +93,6 @@ namespace GraphEditor.Algorithms
 			return new AlgorithmResult(dest[endVertex], result);
 		}
 
-		private List<GraphicsBase> GetSelectedVertices()
-		{
-			return
-				(from Visual graphic in DrawingCanvas.GraphicsList where graphic is GraphicsVertex && (graphic as GraphicsVertex).IsSelected select graphic as GraphicsVertex)
-					.Cast<GraphicsBase>().ToList();
-		}
+
 	}
 }

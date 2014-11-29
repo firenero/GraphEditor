@@ -11,7 +11,7 @@ namespace GraphEditor.Algorithms
 			DrawingCanvas = drawingCanvas;
 		}
 
-		public GraphCanvas DrawingCanvas { get; private set; }
+		protected GraphCanvas DrawingCanvas { get; private set; }
 
 		protected abstract bool IsInputCorrect(out string message);
 
@@ -30,7 +30,7 @@ namespace GraphEditor.Algorithms
 			throw new ArgumentException(message);
 		}
 
-		protected virtual Dictionary<GraphElementVertex, bool> SameTreeChecking()
+		protected Dictionary<GraphElementVertex, bool> SameTreeChecking()
 		{
 			var vertices = DrawingCanvas.GraphStructure.Vertices;
 			int verticesCount = vertices.Count;

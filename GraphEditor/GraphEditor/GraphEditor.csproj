@@ -76,7 +76,9 @@
     <Compile Include="Algorithms\BfsAlgorithm.cs" />
     <Compile Include="Algorithms\DijkstraAlgorithm.cs" />
     <Compile Include="Algorithms\FleuryAlgorithm.cs" />
+    <Compile Include="Algorithms\FordBellmanAlgorithm.cs" />
     <Compile Include="Algorithms\KruskalAlgorithm.cs" />
+    <Compile Include="Algorithms\SelectionAlgorithm.cs" />
     <Compile Include="Commands\CommandAdd.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CommandChangeState.cs" />

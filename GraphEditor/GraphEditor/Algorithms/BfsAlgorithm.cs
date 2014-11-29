@@ -5,7 +5,7 @@ using GraphEditor.GraphStruct;
 
 namespace GraphEditor.Algorithms
 {
-	internal class BfsAlgorithm : Algorithm
+	internal class BfsAlgorithm : SelectionAlgorithm
 	{
 		public BfsAlgorithm(GraphCanvas drawingCanvas) : base(drawingCanvas)
 		{
@@ -59,18 +59,6 @@ namespace GraphEditor.Algorithms
 			var result = new List<GraphElementBase>(resultVertexes);
 			result.AddRange(resultEdges);
 			return new AlgorithmResult(0, result);
-		}
-
-		private List<GraphicsBase> GetSelectedVertices()
-		{
-			var list = new List<GraphicsBase>();
-			foreach (var graphic in DrawingCanvas.GraphicsList)
-			{
-				if (graphic is GraphicsVertex && (graphic as GraphicsVertex).IsSelected)
-
-					list.Add(graphic as GraphicsVertex);
-			}
-			return list;
 		}
 	}
 }

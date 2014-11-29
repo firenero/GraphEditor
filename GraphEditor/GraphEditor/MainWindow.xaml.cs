@@ -16,7 +16,7 @@ namespace GraphEditor
 
 		public MainWindow()
 		{
-			InitializeComponent();
+			InitializeComponent(); 
 		}
 
 		#region Buttons event handlers
@@ -144,6 +144,32 @@ namespace GraphEditor
 			}
 		}
 
+		private void DijkstraAlgorithmButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			var dijkstra = new DijkstraAlgorithm(DrawingGraphCanvas);
+			try
+			{
+				MessageBox.Show(String.Format("Total cost: {0}.", dijkstra.Execute()), "Algorithm result");
+			}
+			catch (ArgumentException argumentException)
+			{
+				MessageBox.Show(argumentException.Message, "Algorithm error");
+			}
+		}
+
+		private void FleuryAlgorithmButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			var fleury = new FleuryAlgorithm(DrawingGraphCanvas);
+			try
+			{
+				MessageBox.Show(String.Format("Cycle consist of {0} vertices.", fleury.Execute()), "Algorithm result");
+			}
+			catch (ArgumentException argumentException)
+			{
+				MessageBox.Show(argumentException.Message, "Algorithm error");
+			}
+		}
+
 		#endregion
 
 		#endregion
@@ -245,31 +271,5 @@ namespace GraphEditor
 		}
 
 		#endregion
-
-		private void DijkstraAlgorithmButton_OnClick(object sender, RoutedEventArgs e)
-		{
-			var dijkstra = new DijkstraAlgorithm(DrawingGraphCanvas);
-			try
-			{
-				MessageBox.Show(String.Format("Total cost: {0}.", dijkstra.Execute()), "Algorithm result");
-			}
-			catch (ArgumentException argumentException)
-			{
-				MessageBox.Show(argumentException.Message, "Algorithm error");
-			}
-		}
-
-		private void FleuryAlgorithmButton_OnClick(object sender, RoutedEventArgs e)
-		{
-			var fleury = new FleuryAlgorithm(DrawingGraphCanvas);
-			try
-			{
-				MessageBox.Show(String.Format("Cycle consist of {0} vertices.", fleury.Execute()), "Algorithm result");
-			}
-			catch (ArgumentException argumentException)
-			{
-				MessageBox.Show(argumentException.Message, "Algorithm error");
-			}
-		}
 	}
 }
