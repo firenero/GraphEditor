@@ -90,6 +90,7 @@ namespace GraphEditor.Tools
 							HelperFunctions.SeclectConnections(drawingCanvas, endVertex, true);
 							curEdge.Label = "0";
 							drawingCanvas.GraphStructure.AddConnection(beginVertex.Id, endVertex.Id, 0, curEdge.Id);
+							OnMouseUp(drawingCanvas, e);
 						}
 						break;
 					}
@@ -124,8 +125,8 @@ namespace GraphEditor.Tools
 					drawingCanvas.AddCommandToHistory(new CommandAdd(curEdge, drawingCanvas.GraphStructure.GetElement(curEdge.Id)));
 				}
 				drawingCanvas.ReleaseMouseCapture();
-				// Return to Pointer tool
-				drawingCanvas.Tool = ToolType.Pointer;
+				if (Keyboard.Modifiers != ModifierKeys.Control)
+					drawingCanvas.Tool = ToolType.Pointer;
 				//בûהכמ לועמה
 				HelperFunctions.OrgonizeGraphics(drawingCanvas);
 			}
