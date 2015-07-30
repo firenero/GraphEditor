@@ -6,7 +6,7 @@
 
 	<ControlTemplate TargetType="Button" x:Key="StandardButtonControlTemplate">
 		<Grid SnapsToDevicePixels="True">
-			<Rectangle x:Name="BackgroundRectangle" StrokeThickness="0" Fill="{TemplateBinding Background}" 
+			<Rectangle x:Name="BackgroundRectangle" StrokeThickness="0" Fill="{TemplateBinding Background}"
 					   Opacity="1" Visibility="Visible" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
 			
 			<Grid>
@@ -30,14 +30,14 @@
 					<VisualState Name="MouseOver" >
 						<Storyboard>
 							<ColorAnimation To="{Binding Source={StaticResource PrimaryMouseOverColor}, Path=Color}" Storyboard.TargetName="BackgroundRectangle"
-											Storyboard.TargetProperty="Fill.Color" Duration="0:00:00" />
+											Storyboard.TargetProperty="Fill.Color" Duration="0:00:0.15" />
 						</Storyboard>
 					</VisualState>
 					
 					<VisualState Name="Pressed">
 						<Storyboard>
 							<ColorAnimation To="{Binding Source={StaticResource PrimaryMousePressedColor}, Path=Color}" Storyboard.TargetName="BackgroundRectangle"
-											Storyboard.TargetProperty="Fill.Color" Duration="0:00:00" />
+											Storyboard.TargetProperty="Fill.Color" Duration="0:00:0.1" />
 						</Storyboard>
 					</VisualState>
 					
@@ -56,8 +56,12 @@
 
 	<ControlTemplate TargetType="ToggleButton" x:Key="StandardToggleButtonControlTemplate">
 		<Grid SnapsToDevicePixels="True">
-			<Rectangle x:Name="BackgroundRectangle" StrokeThickness="0" Fill="{TemplateBinding Background}" 
-					   Opacity="1" Visibility="Visible" />
+            <Rectangle x:Name="BackgroundRectangle" StrokeThickness="0" Fill="{TemplateBinding Background}" 
+					   Opacity="1" Visibility="Visible" >
+                <Rectangle.Stroke>
+                    <SolidColorBrush x:Name="BackgroundRectangleStrokeBrush"/>
+                </Rectangle.Stroke>
+            </Rectangle>
 
 			<Grid>
 				<Grid.RowDefinitions>
@@ -77,20 +81,23 @@
 				<VisualStateGroup Name="CommonStates">
 					<VisualState Name="Normal" />
 
-					<VisualState Name="MouseOver" >
-						<Storyboard>
-							<ColorAnimation To="{Binding Source={StaticResource PrimaryMouseOverColor}, Path=Color}" Storyboard.TargetName="BackgroundRectangle"
-											Storyboard.TargetProperty="Fill.Color" Duration="0:00:00" />
-						</Storyboard>
-					</VisualState>
-
-					<VisualState Name="Checked">
-						<Storyboard>
-							<ColorAnimation To="{Binding Source={StaticResource PrimaryMousePressedColor}, Path=Color}" Storyboard.TargetName="BackgroundRectangle"
-											Storyboard.TargetProperty="Fill.Color" Duration="0:00:00" />
-						</Storyboard>
-					</VisualState>
-				</VisualStateGroup>
+                    <VisualState Name="MouseOver" >
+                        <Storyboard>
+                            <ColorAnimation To="{Binding Source={StaticResource PrimaryMouseOverColor}, Path=Color}" Storyboard.TargetName="BackgroundRectangle"
+											Storyboard.TargetProperty="Fill.Color" Duration="0:00:0.15" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup Name="CheckStates">
+                    <VisualState Name="Unchecked" />
+                    <VisualState Name="Checked">
+                        <Storyboard>
+                            <DoubleAnimation To="1" Storyboard.TargetName="BackgroundRectangle" Storyboard.TargetProperty="StrokeThickness" Duration="0:00:00" />
+                            <ColorAnimation To="{Binding Source={StaticResource PrimaryMouseToggledColor}, Path=Color}" Storyboard.TargetName="BackgroundRectangleStrokeBrush"
+											Storyboard.TargetProperty="Color" Duration="0:00:0.15" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
 			</VisualStateManager.VisualStateGroups>
 		</Grid>
 	</ControlTemplate>

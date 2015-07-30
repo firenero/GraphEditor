@@ -12,32 +12,50 @@
 		</Grid.RowDefinitions>
 
 
-		<Grid Grid.Row="0" Background="{StaticResource PrimaryHeaderPanelColor}">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*" />
-				<ColumnDefinition Width="5*" />
-				<ColumnDefinition Width="*" />
-			</Grid.ColumnDefinitions>
-			
-			<UniformGrid Grid.Column="0" Columns="4">
-				<Button x:Name="NewFileButton" Content="{StaticResource NewIconPath}" Background="{StaticResource PrimaryHeaderButtonColor}" Click="NewFileButton_OnClick" ToolTip="Create new graph" />
-				<Button x:Name="OpenFileButton" Content="{StaticResource OpenIconPath}" Background="{StaticResource PrimaryHeaderButtonColor}" Click="OpenFileButton_OnClick" ToolTip="Open graph" />
-				<Button x:Name="SaveButton" Content="{StaticResource SaveIconPath}" Background="{StaticResource PrimaryHeaderButtonColor}" Click="SaveButton_OnClick" ToolTip="Save graph" />
-				<Button x:Name="SaveAsButton" Content="{StaticResource SaveAsIconPath}" Background="{StaticResource PrimaryHeaderButtonColor}" Click="SaveAsButton_OnClick" ToolTip="Save graph as" />
-			</UniformGrid>
+        <Border Grid.Row="0" BorderThickness="0,0,0,1.5" BorderBrush="{StaticResource PrimaryPanelBorderColor}">
+            <Grid Grid.Row="0" Background="{StaticResource PrimaryHeaderPanelColor}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-			<Viewbox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-				<TextBlock Text="Graph Editor" HorizontalAlignment="Stretch" TextAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0"
-					   FontSize="36" FontFamily="pack://application,,,/Resources/#ImperatorSmallCaps" Foreground="White" FontWeight="Bold"/>
-			</Viewbox>
+                <UniformGrid Grid.Column="0" Columns="4">
+                    <Button x:Name="NewFileButton" Content="{StaticResource NewIconPath}"
+                            Background="{StaticResource PrimaryHeaderButtonColor}" Click="NewFileButton_OnClick"
+                            ToolTip="Create new graph" />
+                    <Button x:Name="OpenFileButton" Content="{StaticResource OpenIconPath}"
+                            Background="{StaticResource PrimaryHeaderButtonColor}" Click="OpenFileButton_OnClick"
+                            ToolTip="Open graph" />
+                    <Button x:Name="SaveButton" Content="{StaticResource SaveIconPath}"
+                            Background="{StaticResource PrimaryHeaderButtonColor}" Click="SaveButton_OnClick"
+                            ToolTip="Save graph" />
+                    <Button x:Name="SaveAsButton" Content="{StaticResource SaveAsIconPath}"
+                            Background="{StaticResource PrimaryHeaderButtonColor}" Click="SaveAsButton_OnClick"
+                            ToolTip="Save graph as" />
+                </UniformGrid>
 
-			<UniformGrid Grid.Column="2" Columns="3">
-				<Button x:Name="InfoButton" Content="{StaticResource HelpIconPath}" Background="{StaticResource PrimaryHeaderButtonColor}" ToolTip="Will be available in next version" />
-				<Button x:Name="MinimizeButton" Content="{StaticResource MinimizeIconPath}" Background="{StaticResource PrimaryHeaderButtonColor}" Click="MinimizeButton_OnClick" ToolTip="Minimize" />
-				<Button x:Name="ExitButton" Content="{StaticResource CloseIconPath}" Background="{StaticResource PrimaryHeaderButtonColor}" Click="ExitButton_OnClick" ToolTip="Exit"  />
-			</UniformGrid>
+                <Viewbox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TextBlock Text="Graph Editor" HorizontalAlignment="Stretch" TextAlignment="Center"
+                               VerticalAlignment="Center" Margin="0,5,0,0"
+                               FontSize="36" FontFamily="pack://application,,,/Resources/#ImperatorSmallCaps"
+                               Foreground="White" FontWeight="Bold" />
+                </Viewbox>
 
-		</Grid>
+                <UniformGrid Grid.Column="2" Columns="3">
+                    <Button x:Name="InfoButton" Content="{StaticResource HelpIconPath}"
+                            Background="{StaticResource PrimaryHeaderButtonColor}"
+                            ToolTip="Will be available in next version" />
+                    <Button x:Name="MinimizeButton" Content="{StaticResource MinimizeIconPath}"
+                            Background="{StaticResource PrimaryHeaderButtonColor}" Click="MinimizeButton_OnClick"
+                            ToolTip="Minimize" />
+                    <Button x:Name="ExitButton" Content="{StaticResource CloseIconPath}"
+                            Background="{StaticResource PrimaryHeaderButtonColor}" Click="ExitButton_OnClick"
+                            ToolTip="Exit" />
+                </UniformGrid>
+
+            </Grid>
+        </Border>
 
 		<Grid Grid.Row="1">
 			<Grid.ColumnDefinitions>
@@ -45,41 +63,44 @@
 				<ColumnDefinition Width="10*"/>
 			</Grid.ColumnDefinitions>
 
-			<Grid Grid.Column="0" Background="{StaticResource PrimaryPanelColor}">
-				<Grid.Resources>
-					<converters:ToolTypeToBoolConverter x:Key="ToolTypeToBoolConverter" />
-				</Grid.Resources>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="2*" />
-					<RowDefinition Height="2*" />
-					<RowDefinition Height="2*" />
-					<RowDefinition Height="1.5*" />
-					<RowDefinition Height="2*" />
-					<RowDefinition Height="2*" />
-					<RowDefinition Height="2*" />
-					<RowDefinition Height="2*" />
-					<RowDefinition Height="2*" />
-				</Grid.RowDefinitions>
-				<ToggleButton Grid.Row="0" x:Name="AddVertexButton" Content="{StaticResource VertexIconPath}" Background="{StaticResource PrimaryButtonColor}"
+            <Border Grid.Column="0" BorderThickness="0,0,1.5,0" BorderBrush="{StaticResource PrimaryPanelBorderColor}">
+                <Grid Grid.Column="0" Background="{StaticResource PrimaryPanelColor}">
+                    <Grid.Resources>
+                        <converters:ToolTypeToBoolConverter x:Key="ToolTypeToBoolConverter" />
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="1.5*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2*" />
+                    </Grid.RowDefinitions>
+                    <ToggleButton Grid.Row="0" x:Name="AddVertexButton" Content="{StaticResource VertexIconPath}" Background="{StaticResource PrimaryButtonColor}"
 							  Checked="AddVertexButton_OnChecked" Unchecked="AddVertexButton_OnUnchecked" ToolTip="Add vertex"
 							  IsChecked="{Binding ElementName=DrawingGraphCanvas, Path=Tool, Mode=TwoWay, Converter={StaticResource ToolTypeToBoolConverter}, ConverterParameter=Vertex}"/>
-				<ToggleButton Grid.Row="1" x:Name="AddEdgeButton" Content="{StaticResource EdgeIconPath}" Background="{StaticResource PrimaryButtonColor}"
+                    <ToggleButton Grid.Row="1" x:Name="AddEdgeButton" Content="{StaticResource EdgeIconPath}" Background="{StaticResource PrimaryButtonColor}"
 							  Checked="AddEdgeButton_OnChecked" Unchecked="AddEdgeButton_OnUnchecked" ToolTip="Add edge"
 							  IsChecked="{Binding ElementName=DrawingGraphCanvas, Path=Tool, Mode=TwoWay, Converter={StaticResource ToolTypeToBoolConverter}, ConverterParameter=Edge}"/>
-				<Button Grid.Row="2" x:Name="RemoveVertexOrNodeButton" Content="{StaticResource DeleteIconPath}" Background="{StaticResource PrimaryButtonColor}" Click="RemoveVertexOrNodeButton_OnClick" ToolTip="Remove selected edges and vertices" />
-				<UniformGrid Grid.Row="3" Columns="2">
-					<Button x:Name="UndoButton" Content="{StaticResource UndoIconPath}" Background="{StaticResource PrimaryButtonColor}" Click="UndoButton_OnClick" ToolTip="Undo" />
-					<Button x:Name="RedoButton" Content="{StaticResource RedoIconPath}" Background="{StaticResource PrimaryButtonColor}" Click="RedoButton_OnClick" ToolTip="Redo" />
-				</UniformGrid>
-				<ToggleButton Grid.Row="4" x:Name="OrientedGraphToggleButton" Content="{StaticResource OrientedIconPath}" Background="{StaticResource PrimaryButtonColor}"
-							  Checked="OrientedGraphToggleButton_OnChecked" Unchecked="OrientedGraphToggleButton_OnUnchecked" ToolTip="Change oriented state"/>
-				<Button Grid.Row="5" x:Name="KruskalAlgorithmButton" Content="{StaticResource KruskalIconPath}" Background="{StaticResource PrimaryAlgoButtonColor}" Click="KruskalAlgorithmButton_OnClick" ToolTip="Find minimum ostov tree" />
-				<Button Grid.Row="6" x:Name="DijkstraAlgorithmButton" Content="{StaticResource DijkstraIconPath}" Background="{StaticResource PrimaryAlgoButtonColor}" Click="DijkstraAlgorithmButton_OnClick" ToolTip="Find minimum path between 2 vertices" />
-				<Button Grid.Row="7" x:Name="BfsAlgorithmButton" Content="{StaticResource BfsIconPath}" Background="{StaticResource PrimaryAlgoButtonColor}" Click="BfsAlgorithmButton_OnClick" ToolTip="Find subtree to selected vertex"/>
-				<Button Grid.Row="8" x:Name="FleuryAlgorithmButton" Content="{StaticResource FleuryIconPath}" Background="{StaticResource PrimaryAlgoButtonColor}" Click="FleuryAlgorithmButton_OnClick" ToolTip="Find Eulerian cycle"/>
-			</Grid>
+                    <Button Grid.Row="2" x:Name="RemoveVertexOrNodeButton" Content="{StaticResource DeleteIconPath}" Background="{StaticResource PrimaryButtonColor}" Click="RemoveVertexOrNodeButton_OnClick" ToolTip="Remove selected edges and vertices" />
+                    <UniformGrid Grid.Row="3" Columns="2">
+                        <Button x:Name="UndoButton" Content="{StaticResource UndoIconPath}" Background="{StaticResource PrimaryButtonColor}" Click="UndoButton_OnClick" ToolTip="Undo" />
+                        <Button x:Name="RedoButton" Content="{StaticResource RedoIconPath}" Background="{StaticResource PrimaryButtonColor}" Click="RedoButton_OnClick" ToolTip="Redo" />
+                    </UniformGrid>
+                    <ToggleButton Grid.Row="4" x:Name="OrientedGraphToggleButton" Content="{StaticResource OrientedIconPath}" Background="{StaticResource PrimaryButtonColor}"
+							  Checked="OrientedGraphToggleButton_OnChecked" Unchecked="OrientedGraphToggleButton_OnUnchecked" ToolTip="Change oriented state" 
+                                  BorderThickness="0,0,0,1.5" BorderBrush="{StaticResource PrimaryPanelBorderColor}"/>
+                    <Button Grid.Row="5" x:Name="KruskalAlgorithmButton" Content="{StaticResource KruskalIconPath}" Background="{StaticResource PrimaryAlgoButtonColor}" Click="KruskalAlgorithmButton_OnClick" ToolTip="Find minimum ostov tree" />
+                    <Button Grid.Row="6" x:Name="DijkstraAlgorithmButton" Content="{StaticResource DijkstraIconPath}" Background="{StaticResource PrimaryAlgoButtonColor}" Click="DijkstraAlgorithmButton_OnClick" ToolTip="Find minimum path between 2 vertices" />
+                    <Button Grid.Row="7" x:Name="BfsAlgorithmButton" Content="{StaticResource BfsIconPath}" Background="{StaticResource PrimaryAlgoButtonColor}" Click="BfsAlgorithmButton_OnClick" ToolTip="Find subtree to selected vertex"/>
+                    <Button Grid.Row="8" x:Name="FleuryAlgorithmButton" Content="{StaticResource FleuryIconPath}" Background="{StaticResource PrimaryAlgoButtonColor}" Click="FleuryAlgorithmButton_OnClick" ToolTip="Find Eulerian cycle"/>
+                </Grid>
+            </Border>
 
-			<Grid Grid.Column="1">
+            <Grid Grid.Column="1">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="10*"/>
 					<RowDefinition Height="Auto"/>
