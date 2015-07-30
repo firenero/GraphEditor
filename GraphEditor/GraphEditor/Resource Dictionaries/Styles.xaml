@@ -12,12 +12,12 @@
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="*" />
-					<RowDefinition Height="3*" />
+					<RowDefinition Height="1.7*" />
 					<RowDefinition Height="*" />
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*" />
-					<ColumnDefinition Width="3*" />
+					<ColumnDefinition Width="1.7*" />
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
 				<ContentPresenter Grid.Column="1" Grid.Row="1" Content="{TemplateBinding Button.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -66,12 +66,12 @@
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="*" />
-					<RowDefinition Height="3*" />
+					<RowDefinition Height="1.7*" />
 					<RowDefinition Height="*" />
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*" />
-					<ColumnDefinition Width="3*" />
+					<ColumnDefinition Width="1.7*" />
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
 				<ContentPresenter Grid.Column="1" Grid.Row="1" Content="{TemplateBinding ToggleButton.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
